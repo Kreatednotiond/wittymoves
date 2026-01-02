@@ -1,1 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Witty Moves</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- Snipcart CSS -->
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <img src="assets/logos/wittymoves.png" alt="Witty Moves" />
+    </a>
+    <nav>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+
+      <button class="snipcart-checkout cart-btn">
+        Cart (<span class="snipcart-items-count">0</span>)
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Make the move.<br><span>Witty</span> every time.</h1>
+        <p>Tees • Hoodies • Sweats • Letterman • Hats</p>
+        <div class="cta">
+          <a class="btn" href="shop.html">Shop Now</a>
+          <a class="link" href="#featured">View Featured</a>
+        </div>
+      </div>
+
+      <div class="hero-mark">
+        <p class="big-mark">WM</p>
+        <p class="muted">Limited drops. Clean fits.</p>
+      </div>
+    </section>
+
+    <section id="featured" class="section">
+      <h2>Featured</h2>
+      <p class="muted">Add your best sellers here later.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="ph"></div>
+          <div class="card-body">
+            <h3>Witty Tee</h3>
+            <p class="muted">$30</p>
+            <a class="btn small" href="shop.html">Shop</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="ph"></div>
+          <div class="card-body">
+            <h3>Witty Hoodie</h3>
+            <p class="muted">$60</p>
+            <a class="btn small" href="shop.html">Shop</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="ph"></div>
+          <div class="card-body">
+            <h3>Witty Hat</h3>
+            <p class="muted">$28</p>
+            <a class="btn small" href="shop.html">Shop</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About Witty Moves</h2>
+      <p class="muted">
+        Witty Moves is a mindset — clean fits, confident energy, and statements that speak without yelling.
+      </p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p class="muted">Email: your@email.com • IG: @wittymoves</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Witty Moves. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Snipcart container + script -->
+  <div hidden id="snipcart" data-api-key="SNIPCART_PUBLIC_API_KEY"></div>
+  <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+</body>
+</html>
 

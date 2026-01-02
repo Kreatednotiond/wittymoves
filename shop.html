@@ -1,1 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop | Witty Moves</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- Snipcart CSS -->
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <img src="assets/logos/wittymoves.png" alt="Witty Moves" />
+    </a>
+    <nav>
+      <a href="#tees">Tees</a>
+      <a href="#hoodies">Hoodies</a>
+      <a href="#sweats">Sweats</a>
+      <a href="#letterman">Letterman</a>
+      <a href="#hats">Hats</a>
+
+      <button class="snipcart-checkout cart-btn">
+        Cart (<span class="snipcart-items-count">0</span>)
+      </button>
+    </nav>
+  </header>
+
+  <main class="section">
+    <h1 class="page-title">Shop Witty Moves</h1>
+    <p class="muted">Choose your category and add to cart.</p>
+
+    <section id="tees" class="shop-section">
+      <h2>Tees</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="ph"></div>
+          <div class="card-body">
+            <h3>Witty Tee - Black</h3>
+            <p class="muted">$30</p>
+
+            <button class="snipcart-add-item btn small"
+              data-item-id="witty-tee-black"
+              data-item-price="30.00"
+              data-item-url="/shop.html"
+              data-item-name="Witty Tee - Black"
+              data-item-description="Classic Witty Moves tee."
+              data-item-image="assets/product/tee-black.jpg"
+              data-item-custom1-name="Size"
+              data-item-custom1-options="S|M|L|XL|2XL">
+              Add to cart
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="hoodies" class="shop-section">
+      <h2>Hoodies</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="ph"></div>
+          <div class="card-body">
+            <h3>Witty Hoodie</h3>
+            <p class="muted">$60</p>
+
+            <button class="snipcart-add-item btn small"
+              data-item-id="witty-hoodie"
+              data-item-price="60.00"
+              data-item-url="/shop.html"
+              data-item-name="Witty Hoodie"
+              data-item-description="Premium hoodie."
+              data-item-image="assets/product/hoodie-1.jpg"
+              data-item-custom1-name="Size"
+              data-item-custom1-options="S|M|L|XL|2XL">
+              Add to cart
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Add more sections for Sweats / Letterman / Hats -->
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Witty Moves. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Snipcart container + script -->
+  <div hidden id="snipcart" data-api-key="SNIPCART_PUBLIC_API_KEY"></div>
+  <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
+</body>
+</html>
 

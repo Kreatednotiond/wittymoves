@@ -12,10 +12,10 @@ window.WITTY_PRODUCTS = [
     gender: "unisex",
     sizes: ["S","M","L","XL","2XL","3XL"],
     colors: [
-      { label: "Black (White wording)", value: "Black (White wording)", img: "assets/product/witty-tee-quarter-chest/black.png" },
-      { label: "Red (White wording)", value: "Red (White wording)", img: "assets/product/witty-tee-quarter-chest/red.png" },
-      { label: "White (Black wording)", value: "White (Black wording)", img: "assets/product/witty-tee-quarter-chest/white-black.png" },
-      { label: "White (Red wording)", value: "White (Red wording)", img: "assets/product/witty-tee-quarter-chest/white-red.png" },
+      { label: "Black (White wording)", value: "Black (White wording)", img: "assets/product/witty-tee/black-White.png" },
+      { label: "Red (White wording)", value: "Red (White wording)", img: "assets/product/witty-tee/red-white.png" },
+      { label: "White (Black wording)", value: "White (Black wording)", img: "assets/product/witty-tee/white-black.png" },
+      { label: "White (Red wording)", value: "White (Red wording)", img: "assets/product/witty-tee/white-red.png" },
     ],
     description: "Unisex tee. Quarter chest logo.",
     badge: "Unisex"

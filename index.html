@@ -1,147 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Witty Moves</title>
-
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-
 <body>
-  <!-- HEADER -->
+
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Witty Moves Home">
-        <img class="brand-logo" src="assets/logos/logo.png" alt="Witty Moves" />
-      </a>
-
-      <nav class="nav">
-        <a class="nav-link" href="shop.html">Shop</a>
-
-        <!-- Snipcart Cart Button (works everywhere) -->
-        <button class="snipcart-checkout cart-btn" type="button">
-          Cart (<span class="snipcart-items-count">0</span>)
-        </button>
-      </nav>
-    </div>
+    <a class="brand" href="index.html">
+      <img src="assets/logos/logo.png" alt="Witty Moves" class="brand-logo" />
+    </a>
+    <nav class="nav">
+      <a href="shop.html">Shop</a>
+      <button class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</button>
+    </nav>
   </header>
 
-  <!-- HERO -->
-  <main class="hero-live">
-    <div class="container hero-live-inner">
-      <div class="hero-copy">
-        <div class="hero-badge">⚡ New Drop • Limited Editions • Clean Pieces</div>
-
-        <h1 class="hero-title">Witty Moves</h1>
-        <p class="hero-sub">
-          Built for the move. Designed to speak without yelling.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="shop.html">Go to Shop</a>
-          <a class="btn ghost" href="shop.html#jackets">Limited Editions</a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-top">✅ Secure Checkout</div>
-            <div class="stat-sub">Snipcart + Stripe ready</div>
-          </div>
-          <div class="stat">
-            <div class="stat-top">📦 Limited Drops</div>
-            <div class="stat-sub">Varsity jackets limited</div>
-          </div>
-          <div class="stat">
-            <div class="stat-top">👕 Clear Sizing</div>
-            <div class="stat-sub">Unisex & men sizing listed</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <!-- FEATURED IMAGE: change this to any image you want -->
-        <div class="hero-card">
-          <div class="hero-card-label">Featured</div>
-          <img
-            src="assets/product/all-witty-varsity-unisex/1.png"
-            alt="Featured Witty Moves item"
-          />
-        </div>
-
-        <div class="hero-mini-grid">
-          <a class="mini-card" href="shop.html#tees">
-            <span class="mini-title">Tees</span>
-            <span class="mini-sub">$25 • S–3XL</span>
-          </a>
-          <a class="mini-card" href="shop.html#hoodies">
-            <span class="mini-title">Hoodies</span>
-            <span class="mini-sub">$50 • S–2XL</span>
-          </a>
-          <a class="mini-card" href="shop.html#hats">
-            <span class="mini-title">Snapbacks</span>
-            <span class="mini-sub">$30</span>
-          </a>
-          <a class="mini-card" href="shop.html#jackets">
-            <span class="mini-title">Jackets</span>
-            <span class="mini-sub">$250 • Limited</span>
-          </a>
-        </div>
-      </div>
-    </div>
+  <main class="container">
+    <h1>Witty Moves</h1>
+    <p class="muted">Built for the move. Designed to speak without yelling.</p>
+    <a class="btn" href="shop.html">Go to Shop</a>
   </main>
 
-  <!-- FEATURED PICKS -->
-  <section class="home-section">
-    <div class="container">
-      <div class="home-section-head">
-        <h2>Shop Highlights</h2>
-        <a class="text-link" href="shop.html">View all →</a>
-      </div>
-
-      <div class="home-grid">
-        <a class="home-card" href="shop.html#tees">
-          <img src="assets/product/big-witty-tee-full-chest/1.png" alt="Big Witty Tee" />
-          <div class="home-card-body">
-            <div class="home-card-title">Big Witty Tee</div>
-            <div class="home-card-sub">$25 • Unisex</div>
-          </div>
-        </a>
-
-        <a class="home-card" href="shop.html#crewnecks">
-          <img src="assets/product/big-witty-crewneck-full-chest/1.png" alt="Big Witty Crewneck" />
-          <div class="home-card-body">
-            <div class="home-card-title">Crewnecks</div>
-            <div class="home-card-sub">$45 • Men sizing</div>
-          </div>
-        </a>
-
-        <a class="home-card" href="shop.html#jackets">
-          <img src="assets/product/all-witty-varsity-unisex/2.png" alt="All Witty Varsity" />
-          <div class="home-card-body">
-            <div class="home-card-title">All Witty Varsity</div>
-            <div class="home-card-sub">$250 • Limited Edition</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="muted">© <span id="year"></span> Witty Moves</div>
-      <div class="muted">Built for the move.</div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
   <!-- Snipcart -->
-  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_API_KEY"></div>
-  <script async src="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.js"></script>
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.css" />
+  <script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY"></div>
+
 </body>
 </html>

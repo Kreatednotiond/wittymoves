@@ -1,188 +1,128 @@
-/* =========================
-   HOME PAGE ONLY (safe)
-   Requires: <body class="home-page">
-========================= */
+/* assets/css/styles.css */
 
-body.home-page .container { max-width: 1100px; }
-
-body.home-page .hero-live{
-  position: relative;
-  padding: 48px 0 34px;   /* less blank space */
-  overflow: hidden;
+/* base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  background: #fff;
+  color: #111;
 }
+a { color: inherit; text-decoration: none; }
+.muted { color: #666; }
 
-body.home-page .hero-live::before{
-  content:"";
-  position:absolute;
-  inset:-140px;
-  background:
-    radial-gradient(900px 520px at 14% 18%, rgba(0,0,0,.06), transparent 60%),
-    radial-gradient(820px 460px at 86% 15%, rgba(0,0,0,.05), transparent 55%),
-    radial-gradient(760px 460px at 70% 88%, rgba(0,0,0,.04), transparent 60%);
-  pointer-events:none;
+/* layout */
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+/* header */
+.site-header{
+  border-bottom: 1px solid #eee;
+  background: #fff;
 }
-
-/* ✅ LOGO BACKDROP (correct path from assets/css/styles.css) */
-body.home-page .hero-bg-logo{
-  position:absolute;
-  inset:-10%;
-  background-image: url("../logos/logo.png");
-  background-repeat:no-repeat;
-  background-position: 85% 25%;
-  background-size: 520px;
-  opacity: .07;
-  transform: rotate(-8deg);
-  pointer-events:none;
-}
-
-body.home-page .hero-live-inner{
-  position: relative;
-  display:grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 22px;
-  align-items: start;
-}
-
-body.home-page .hero-badge{
-  display:inline-flex;
+.header-inner{
+  display:flex;
   align-items:center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.10);
-  background: rgba(255,255,255,.86);
-  font-weight: 800;
-  font-size: 12px;
-  margin-bottom: 14px;
+  justify-content:space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+.brand-logo{
+  height: 30px;       /* tab bit bigger */
+  width: auto;
+  display:block;
 }
 
-body.home-page .hero-title{
-  margin: 0 0 10px;
-  font-size: clamp(34px, 5vw, 62px);
-  letter-spacing: -0.03em;
-  line-height: 1.02;
-  font-weight: 900;
-}
-
-body.home-page .hero-sub{
-  margin: 0 0 16px;
-  color: #555;
-  font-size: 16px;
-  line-height: 1.6;
-  max-width: 560px;
-}
-
-body.home-page .hero-actions{
+.nav{
   display:flex;
   gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
+  align-items:center;
 }
+.nav-link{
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.85);
+}
+.nav-link:hover{ background:#f3f3f3; }
 
-/* keep your existing .btn, add a home-only ghost style */
-body.home-page .btn.ghost{
-  background: rgba(255,255,255,.75);
-  border: 1px solid rgba(0,0,0,.25);
+/* cart */
+.cart-btn{
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #111;
+  color:#fff;
+  cursor:pointer;
+}
+.cart-btn:hover{ opacity: .9; }
+
+/* buttons */
+.btn{
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid #111;
+  background:#111;
+  color:#fff;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 700;
+}
+.btn:hover{ opacity:.92; }
+.btn.ghost{
+  background: rgba(255,255,255,.78);
   color:#111;
+  border: 1px solid rgba(0,0,0,.25);
 }
 
-/* stats */
-body.home-page .hero-stats{
+/* badge */
+.badge{
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  color:#444;
+  white-space: nowrap;
+}
+
+/* grids */
+.shop-grid{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 18px;
+}
+@media (max-width: 900px){
+  .shop-grid{ grid-template-columns: 1fr; }
 }
 
-body.home-page .stat{
-  border: 1px solid rgba(0,0,0,.10);
-  border-radius: 16px;
-  background: rgba(255,255,255,.90);
-  padding: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
-}
-
-body.home-page .stat-top{ font-weight: 900; font-size: 13px; }
-body.home-page .stat-sub{ color:#666; font-size: 12px; margin-top: 4px; }
-
-/* right column */
-body.home-page .hero-visual{ display:grid; gap: 12px; }
-
-body.home-page .hero-card{
-  border: 1px solid rgba(0,0,0,.10);
+/* product card (shop grid) */
+.product-card{
+  border: 1px solid #eee;
   border-radius: 18px;
-  background: rgba(255,255,255,.92);
-  box-shadow: 0 14px 40px rgba(0,0,0,.10);
-  padding: 12px;
+  overflow:hidden;
+  display:block;
+  background:#fff;
+  box-shadow: 0 12px 34px rgba(0,0,0,.06);
+  transition: transform .18s ease, box-shadow .18s ease;
 }
-
-body.home-page .hero-card-label{
-  font-weight: 900;
-  font-size: 12px;
-  color:#666;
-  margin-bottom: 10px;
+.product-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0,0,0,.10);
 }
-
-/* ✅ prevents “giant images” */
-body.home-page .hero-card img{
-  width: 100%;
-  height: 260px;
+.product-card img{
+  width:100%;
+  height: 240px;         /* FIX: prevents giant shop photos */
   object-fit: contain;
-  border-radius: 14px;
   background:#fafafa;
-  border: 1px solid rgba(0,0,0,.08);
+  display:block;
 }
+.pc-body{ padding: 12px 12px 14px; }
+.pc-top{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
 
-body.home-page .hero-mini-grid{
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-body.home-page .mini-card{
-  text-decoration:none;
-  border: 1px solid rgba(0,0,0,.10);
-  border-radius: 16px;
-  background: rgba(255,255,255,.88);
-  padding: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
-}
-
-body.home-page .mini-title{ display:block; font-weight: 900; }
-body.home-page .mini-sub{ display:block; color:#666; font-size: 12px; margin-top: 4px; }
-
-/* ✅ MOBILE FIXES */
-@media (max-width: 900px){
-  body.home-page .hero-live-inner{ grid-template-columns: 1fr; }
-  body.home-page .hero-bg-logo{
-    background-position: 70% 10%;
-    background-size: 360px;
-  }
-  body.home-page .hero-stats{ grid-template-columns: 1fr; }
-  body.home-page .hero-card img{ height: 210px; }
-}
 /* =========================
-   HOME PAGE FIXES (safe)
-   Header logo smaller + images not huge
-   Requires: <body class="home-page">
-   Paste at VERY BOTTOM of styles.css
+   HOME PAGE ONLY
 ========================= */
-
-/* ---------- HEADER: make logo smaller (all pages) ---------- */
-.brand-logo{
-  height: 26px;        /* smaller */
-  width: auto;
-  display: block;
-}
-
-@media (max-width: 900px){
-  .site-header{ padding: 10px 12px; }
-  .brand-logo{ height: 22px; }   /* even smaller on mobile */
-}
-
-/* ---------- HOME ONLY ---------- */
-body.home-page .container { max-width: 1100px; }
-
-/* Hero spacing */
 body.home-page .hero-live{
   position: relative;
   padding: 44px 0 26px;
@@ -200,7 +140,6 @@ body.home-page .hero-live::before{
   pointer-events:none;
 }
 
-/* Faded logo backdrop (correct path from assets/css/styles.css) */
 body.home-page .hero-bg-logo{
   position:absolute;
   inset:-10%;
@@ -208,7 +147,7 @@ body.home-page .hero-bg-logo{
   background-repeat:no-repeat;
   background-position: 85% 25%;
   background-size: 520px;
-  opacity: .09;               /* a little stronger so you can SEE it */
+  opacity: .09;
   transform: rotate(-8deg);
   pointer-events:none;
 }
@@ -257,14 +196,6 @@ body.home-page .hero-actions{
   margin-bottom: 16px;
 }
 
-/* Home-only ghost button style */
-body.home-page .btn.ghost{
-  background: rgba(255,255,255,.75);
-  border: 1px solid rgba(0,0,0,.25);
-  color:#111;
-}
-
-/* stats */
 body.home-page .hero-stats{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -282,7 +213,6 @@ body.home-page .stat{
 body.home-page .stat-top{ font-weight: 900; font-size: 13px; }
 body.home-page .stat-sub{ color:#666; font-size: 12px; margin-top: 4px; }
 
-/* right column */
 body.home-page .hero-visual{ display:grid; gap: 12px; }
 
 body.home-page .hero-card{
@@ -300,7 +230,6 @@ body.home-page .hero-card-label{
   margin-bottom: 10px;
 }
 
-/* ✅ keeps the featured image from becoming giant */
 body.home-page .hero-card img{
   width: 100%;
   height: 240px;
@@ -310,48 +239,7 @@ body.home-page .hero-card img{
   border: 1px solid rgba(0,0,0,.08);
 }
 
-/* ✅ FIX: Shop Highlights images were huge — limit them */
-body.home-page .home-card img{
-  width: 100%;
-  height: 210px;        /* controls size */
-  object-fit: contain;  /* no crazy zoom/crop */
-  background: #fafafa;
-  display: block;
-}
-
-/* make highlight cards a bit tighter */
-body.home-page .home-card-body{ padding: 12px; }
-
-/* mobile */
-@media (max-width: 900px){
-  body.home-page .hero-live-inner{ grid-template-columns: 1fr; }
-
-  body.home-page .hero-bg-logo{
-    background-position: 70% 10%;
-    background-size: 340px;
-    opacity: .10;
-  }
-
-  body.home-page .hero-stats{ grid-template-columns: 1fr; }
-  body.home-page .hero-card img{ height: 210px; }
-  body.home-page .home-card img{ height: 190px; }
-}
-/* =========================
-   HOME PAGE - Bubble + click fixes
-   Paste at VERY BOTTOM of styles.css
-========================= */
-
-/* Slightly bigger header logo */
-.brand-logo{
-  height: 30px;
-  width: auto;
-}
-
-@media (max-width: 900px){
-  .brand-logo{ height: 26px; }
-}
-
-/* Bubble style for mini cards + highlight cards (HOME ONLY) */
+/* bubble cards */
 body.home-page .mini-card,
 body.home-page .home-card{
   border-radius: 22px;
@@ -360,27 +248,32 @@ body.home-page .home-card{
   transition: transform .18s ease, box-shadow .18s ease;
 }
 
+body.home-page .mini-card{
+  background: rgba(255,255,255,.92);
+  padding: 14px;
+}
 body.home-page .mini-card:hover,
 body.home-page .home-card:hover{
   transform: translateY(-2px);
   box-shadow: 0 18px 38px rgba(0,0,0,.10);
 }
 
-body.home-page .mini-card:active,
-body.home-page .home-card:active{
-  transform: translateY(0px);
+body.home-page .mini-title{ display:block; font-weight: 900; }
+body.home-page .mini-sub{ display:block; color:#666; font-size: 12px; margin-top: 4px; }
+
+.home-section{ padding: 26px 0 70px; }
+
+.home-section-head{
+  display:flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
-/* Make the mini-card feel like a real “bubble button” */
-body.home-page .mini-card{
-  background: rgba(255,255,255,.92);
-  padding: 14px;
-}
-
-/* Make “View all →” a bubble button */
-body.home-page .text-link{
-  display: inline-flex;
-  align-items: center;
+.text-link{
+  display:inline-flex;
+  align-items:center;
   gap: 8px;
   padding: 10px 14px;
   border-radius: 999px;
@@ -388,7 +281,62 @@ body.home-page .text-link{
   background: rgba(255,255,255,.9);
   box-shadow: 0 10px 26px rgba(0,0,0,.06);
 }
+.text-link:hover{ transform: translateY(-1px); }
 
-body.home-page .text-link:hover{
-  transform: translateY(-1px);
+.home-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px){
+  .home-grid{ grid-template-columns: 1fr; }
+}
+
+.home-card{
+  background:#fff;
+  overflow:hidden;
+}
+
+.home-card img{
+  width:100%;
+  height: 210px;
+  object-fit: contain;
+  background:#fafafa;
+  display:block;
+}
+
+.home-card-body{ padding: 12px; }
+.home-card-title{ font-weight: 900; margin-bottom: 6px; }
+.home-card-sub{ color:#666; font-size: 13px; }
+
+.hero-mini-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.site-footer{
+  border-top: 1px solid #eee;
+  padding: 22px 0;
+}
+.footer-inner{
+  display:flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* mobile tweaks */
+@media (max-width: 900px){
+  .brand-logo{ height: 26px; }
+  body.home-page .hero-live-inner{ grid-template-columns: 1fr; }
+  body.home-page .hero-bg-logo{
+    background-position: 70% 10%;
+    background-size: 340px;
+    opacity: .10;
+  }
+  body.home-page .hero-stats{ grid-template-columns: 1fr; }
+  body.home-page .hero-card img{ height: 210px; }
+  body.home-page .home-card img{ height: 190px; }
+  .product-card img{ height: 210px; }
 }

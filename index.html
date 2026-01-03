@@ -1,82 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Witty Moves</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
-
-  <!-- Snipcart CSS -->
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
 </head>
 <body>
-  <header class="nav">
-    <a class="brand" href="index.html" aria-label="Witty Moves Home">
-      <!-- Replace with your logo file if different -->
-      <span class="brand-text">Witty Moves</span>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/logos/logo.png" alt="Witty Moves" class="brand-logo" />
     </a>
-
-    <nav class="nav-links">
+    <nav class="nav">
       <a href="shop.html">Shop</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-
-      <button class="snipcart-checkout cart-btn" type="button">
-        Cart (<span class="snipcart-items-count">0</span>)
-      </button>
+      <button class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</button>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Make the move.<br><span>Witty</span> every time.</h1>
-        <p>Tees • Crewnecks • Hoodies • Sweatpants • Varsity • Hats</p>
-
-        <div class="cta">
-          <a class="btn" href="shop.html">Shop Now</a>
-          <a class="link" href="shop.html#tees">Start with Tees</a>
-        </div>
-
-        <div class="pill-row">
-          <span class="pill">Unisex Tees</span>
-          <span class="pill">Men’s Sizing</span>
-          <span class="pill">Limited Edition Varsity</span>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <p class="hero-big">WM</p>
-        <p class="muted">Clean fits. Confident energy. No noise.</p>
-        <a class="btn small" href="shop.html#varsity">Limited Varsity</a>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p class="muted">
-        Witty Moves is a mindset — clean pieces, bold statements, and effortless confidence.
-      </p>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p class="muted">Email: your@email.com • IG: @wittymoves</p>
-    </section>
+  <main class="container">
+    <h1>Witty Moves</h1>
+    <p class="muted">Built for the move. Designed to speak without yelling.</p>
+    <a class="btn" href="shop.html">Go to Shop</a>
   </main>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Witty Moves. All rights reserved.</p>
-  </footer>
+  <!-- Snipcart -->
+  <script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY"></div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-  <!-- Snipcart container + script -->
-  <!-- IMPORTANT: Replace YOUR_SNIPCART_PUBLIC_API_KEY with your real key -->
-  <div hidden id="snipcart" data-api-key=NzYzOTczZmUtNzJkOC00OGNmLWEyMTItODdjMjQwNTkxMTAwNjM5MDI5MDAxMzIwMTUwNzA1></div>
-  <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
 </body>
 </html>

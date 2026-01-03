@@ -435,3 +435,76 @@ body.home-page .mini-sub{ display:block; color:#666; font-size: 12px; margin-top
 
 /* Optional: tiny shine so white swatches still feel like a bubble */
 .swatch { box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+/* =========================
+   PRODUCT PAGE - Gallery/Thumb Fix
+   (Varsity + Hat)
+   Paste at VERY BOTTOM of styles.css
+========================= */
+
+/* Make sure the left column is a "gallery stack" */
+.product-page > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Main image stays main */
+.main-image{
+  width: 100%;
+  height: 460px;           /* controls main size */
+  object-fit: contain;
+  border-radius: 16px;
+  background:#fafafa;
+  border:1px solid #eee;
+  display:block;
+}
+
+@media (max-width: 900px){
+  .main-image{ height: 340px; }
+}
+
+/* Thumbnails are SMALL + under main image */
+.thumbs{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Each thumb is a small button */
+.thumb{
+  width: 78px;
+  height: 78px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .12s ease, border-color .12s ease;
+}
+
+.thumb:hover{
+  transform: translateY(-1px);
+}
+
+.thumb.active{
+  border-color:#111;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.10);
+}
+
+/* Thumbnail image is forced small (prevents stacking big images) */
+.thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+}
+
+/* Optional: keep thumbs from stretching weird */
+.thumbs:empty{
+  display:none;
+}

@@ -39,11 +39,13 @@
     return Number.isFinite(num) ? num.toFixed(2) : "0.00";
   };
 
+  // --------- Basic info ----------
   document.title = `${product.name} | Witty Moves`;
   if (nameEl) nameEl.textContent = product.name;
   if (priceEl) priceEl.textContent = `$${money(product.price)}`;
   if (descEl) descEl.textContent = product.description || "";
 
+  // --------- Main image ----------
   const setMain = (src) => {
     if (!mainImage) return;
     mainImage.src = src || "";
@@ -62,31 +64,43 @@
 
   setMain(defaultImg);
 
-  // THUMBS: show ONLY if gallery exists (hat/jackets). Do NOT show all colors as thumbs.
+  // --------- THUMBS ----------
+  // Show ONLY if gallery exists (hat/jackets). Do NOT show all colors as thumbs.
   if (thumbs) {
     thumbs.innerHTML = "";
     const gallery = (product.gallery && product.gallery.length) ? product.gallery : [];
 
     if (gallery.length > 1) {
       thumbs.style.display = ""; // show
+
+      // Decide which thumb should be active based on current main image
+      const activeSrc = defaultImg && gallery.includes(defaultImg) ? defaultImg : gallery[0];
+
       gallery.forEach((src, idx) => {
         const btn = document.createElement("button");
-        btn.className = "thumb" + (idx === 0 ? " active" : "");
         btn.type = "button";
+        btn.className = "thumb" + (src === activeSrc ? " active" : "");
         btn.innerHTML = `<img src="${src}" alt="${product.name} thumbnail ${idx + 1}" loading="lazy">`;
+
         btn.addEventListener("click", () => {
           setMain(src);
           [...thumbs.querySelectorAll(".thumb")].forEach((t) => t.classList.remove("active"));
           btn.classList.add("active");
         });
+
         thumbs.appendChild(btn);
       });
+
+      // If defaultImg was not in gallery, force main image to gallery[0] so it matches thumbs
+      if (!gallery.includes(defaultImg)) {
+        setMain(gallery[0]);
+      }
     } else {
       thumbs.style.display = "none"; // hide completely for tees/hoodies/etc
     }
   }
 
-  // SIZE CHIPS
+  // --------- SIZE CHIPS ----------
   const renderSizes = () => {
     if (!sizeChips) return;
     sizeChips.innerHTML = "";
@@ -95,17 +109,20 @@
       b.type = "button";
       b.className = "chip" + (s === selectedSize ? " active" : "");
       b.textContent = s;
+
       b.addEventListener("click", () => {
         selectedSize = s;
         renderSizes();
         syncSnipcart();
       });
+
       sizeChips.appendChild(b);
     });
   };
   renderSizes();
 
-  // COLOR SWATCH COLOR PICKER (handles tees like "Black (White wording)")
+  // --------- COLOR SWATCH COLOR PICKER ----------
+  // Handles tees like "Black (White wording)" by stripping ( ... )
   const baseColor = (txt) => String(txt || "").split("(")[0].trim().toLowerCase();
 
   const pickColor = (txt) => {
@@ -132,7 +149,7 @@
     return { hex: "#eaeaea", white: false };
   };
 
-  // COLOR SWATCHES
+  // --------- COLOR SWATCHES ----------
   const renderColors = () => {
     if (!colorSwatches) return;
     colorSwatches.innerHTML = "";
@@ -152,7 +169,11 @@
 
       sw.addEventListener("click", () => {
         selectedColor = c;
+
+        // Switch main image to selected color image (does not affect thumbs)
         if (c.img) setMain(c.img);
+
+        // If this product has gallery thumbs (hat/jackets), keep thumb selection unchanged
         renderColors();
         syncSnipcart();
       });
@@ -162,7 +183,7 @@
   };
   renderColors();
 
-  // SNIPCART
+  // --------- SNIPCART ----------
   function syncSnipcart() {
     if (!addBtn) return;
 

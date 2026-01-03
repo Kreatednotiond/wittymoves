@@ -22,7 +22,7 @@ window.WITTY_PRODUCTS = [
   },
   {
     id: "big-witty-tee-full-chest",
-    name: "Big Witty Moves T-Shirt (Full Chest)",
+    name: "Witty Moves T-Shirt (Full Chest)",
     price: 25,
     type: "tee",
     gender: "unisex",
@@ -42,7 +42,7 @@ window.WITTY_PRODUCTS = [
   // -------------------------
   {
     id: "big-witty-crewneck-full-chest",
-    name: "Big Witty Moves Crewneck (Full Chest)",
+    name: "Witty Moves Crewneck (Full Chest)",
     price: 45,
     type: "crewneck",
     gender: "men",
@@ -80,7 +80,7 @@ window.WITTY_PRODUCTS = [
   // -------------------------
   {
     id: "big-witty-hoodie-full-chest",
-    name: "Big Witty Moves Hoodie (Full Chest)",
+    name: "Witty Moves Hoodie (Full Chest)",
     price: 50,
     type: "hoodie",
     gender: "men",
@@ -142,7 +142,7 @@ window.WITTY_PRODUCTS = [
   // -------------------------
   {
     id: "big-witty-sweatpants",
-    name: "Big Witty Moves Sweatpants",
+    name: "Witty Moves Sweatpants",
     price: 45,
     type: "sweatpants",
     gender: "men",

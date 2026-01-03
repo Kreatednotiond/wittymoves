@@ -508,3 +508,34 @@ body.home-page .mini-sub{ display:block; color:#666; font-size: 12px; margin-top
 .thumbs:empty{
   display:none;
 }
+/* =========================
+   HEADER – Center Logo (All Pages)
+========================= */
+
+.site-header {
+  position: relative;
+}
+
+/* Center logo horizontally */
+.site-header .brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Keep nav aligned right */
+.site-header .nav {
+  margin-left: auto;
+}
+
+/* Prevent logo from blocking clicks */
+.site-header .brand {
+  pointer-events: auto;
+}
+
+/* Mobile spacing fix */
+@media (max-width: 900px) {
+  .site-header .brand-logo {
+    height: 30px; /* keep it clean on mobile */
+  }
+}

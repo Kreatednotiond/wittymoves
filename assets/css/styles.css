@@ -336,3 +336,59 @@ body.home-page .home-card-body{ padding: 12px; }
   body.home-page .hero-card img{ height: 210px; }
   body.home-page .home-card img{ height: 190px; }
 }
+/* =========================
+   HOME PAGE - Bubble + click fixes
+   Paste at VERY BOTTOM of styles.css
+========================= */
+
+/* Slightly bigger header logo */
+.brand-logo{
+  height: 30px;
+  width: auto;
+}
+
+@media (max-width: 900px){
+  .brand-logo{ height: 26px; }
+}
+
+/* Bubble style for mini cards + highlight cards (HOME ONLY) */
+body.home-page .mini-card,
+body.home-page .home-card{
+  border-radius: 22px;
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: 0 12px 30px rgba(0,0,0,.07);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+body.home-page .mini-card:hover,
+body.home-page .home-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(0,0,0,.10);
+}
+
+body.home-page .mini-card:active,
+body.home-page .home-card:active{
+  transform: translateY(0px);
+}
+
+/* Make the mini-card feel like a real “bubble button” */
+body.home-page .mini-card{
+  background: rgba(255,255,255,.92);
+  padding: 14px;
+}
+
+/* Make “View all →” a bubble button */
+body.home-page .text-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+}
+
+body.home-page .text-link:hover{
+  transform: translateY(-1px);
+}

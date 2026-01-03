@@ -1,1 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product | Witty Moves</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/logos/logo.png" alt="Witty Moves" class="brand-logo" />
+    </a>
+    <nav class="nav">
+      <a href="shop.html">Shop</a>
+      <button class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</button>
+    </nav>
+  </header>
+
+  <main class="container" id="productWrap">
+    <div class="product-page">
+
+      <section>
+        <img id="mainImage" class="main-image" src="" alt="">
+        <div id="thumbs" class="thumbs"></div>
+      </section>
+
+      <section>
+        <h1 id="pTitle"></h1>
+        <p class="muted" id="pMeta"></p>
+
+        <div class="field">
+          <label>Color</label>
+          <div id="swatches" class="swatches"></div>
+        </div>
+
+        <div class="field">
+          <label for="sizeSelect">Size</label>
+          <select id="sizeSelect"></select>
+        </div>
+
+        <div class="field">
+          <label for="colorSelect">Color (Dropdown)</label>
+          <select id="colorSelect"></select>
+        </div>
+
+        <button id="addToCartBtn" class="snipcart-add-item btn">
+          Add to cart
+        </button>
+
+        <p class="muted" style="margin-top:12px;">
+          <a href="shop.html">← Back to shop</a>
+        </p>
+
+      </section>
+
+    </div>
+  </main>
+
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/product.js"></script>
+
+  <!-- Snipcart -->
+  <script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY"></div>
+
+</body>
+</html>
 

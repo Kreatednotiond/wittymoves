@@ -12,15 +12,17 @@
 </head>
 <body>
   <header class="nav">
-    <a class="brand" href="index.html">
-      <img src="assets/logos/wittymoves.png" alt="Witty Moves" />
+    <a class="brand" href="index.html" aria-label="Witty Moves Home">
+      <!-- Replace with your logo file if different -->
+      <span class="brand-text">Witty Moves</span>
     </a>
-    <nav>
-      <a href="shop.html">Shop</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
 
-      <button class="snipcart-checkout cart-btn">
+    <nav class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
+      <button class="snipcart-checkout cart-btn" type="button">
         Cart (<span class="snipcart-items-count">0</span>)
       </button>
     </nav>
@@ -30,57 +32,31 @@
     <section class="hero">
       <div class="hero-text">
         <h1>Make the move.<br><span>Witty</span> every time.</h1>
-        <p>Tees • Hoodies • Sweats • Letterman • Hats</p>
+        <p>Tees • Crewnecks • Hoodies • Sweatpants • Varsity • Hats</p>
+
         <div class="cta">
           <a class="btn" href="shop.html">Shop Now</a>
-          <a class="link" href="#featured">View Featured</a>
+          <a class="link" href="shop.html#tees">Start with Tees</a>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Unisex Tees</span>
+          <span class="pill">Men’s Sizing</span>
+          <span class="pill">Limited Edition Varsity</span>
         </div>
       </div>
 
-      <div class="hero-mark">
-        <p class="big-mark">WM</p>
-        <p class="muted">Limited drops. Clean fits.</p>
-      </div>
-    </section>
-
-    <section id="featured" class="section">
-      <h2>Featured</h2>
-      <p class="muted">Add your best sellers here later.</p>
-
-      <div class="grid">
-        <article class="card">
-          <div class="ph"></div>
-          <div class="card-body">
-            <h3>Witty Tee</h3>
-            <p class="muted">$30</p>
-            <a class="btn small" href="shop.html">Shop</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="ph"></div>
-          <div class="card-body">
-            <h3>Witty Hoodie</h3>
-            <p class="muted">$60</p>
-            <a class="btn small" href="shop.html">Shop</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="ph"></div>
-          <div class="card-body">
-            <h3>Witty Hat</h3>
-            <p class="muted">$28</p>
-            <a class="btn small" href="shop.html">Shop</a>
-          </div>
-        </article>
+      <div class="hero-card">
+        <p class="hero-big">WM</p>
+        <p class="muted">Clean fits. Confident energy. No noise.</p>
+        <a class="btn small" href="shop.html#varsity">Limited Varsity</a>
       </div>
     </section>
 
     <section id="about" class="section">
-      <h2>About Witty Moves</h2>
+      <h2>About</h2>
       <p class="muted">
-        Witty Moves is a mindset — clean fits, confident energy, and statements that speak without yelling.
+        Witty Moves is a mindset — clean pieces, bold statements, and effortless confidence.
       </p>
     </section>
 
@@ -99,8 +75,8 @@
   </script>
 
   <!-- Snipcart container + script -->
-  <div hidden id="snipcart" data-api-key="SNIPCART_PUBLIC_API_KEY"></div>
+  <!-- IMPORTANT: Replace YOUR_SNIPCART_PUBLIC_API_KEY with your real key -->
+  <div hidden id="snipcart" data-api-key=NzYzOTczZmUtNzJkOC00OGNmLWEyMTItODdjMjQwNTkxMTAwNjM5MDI5MDAxMzIwMTUwNzA1></div>
   <script async src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
 </body>
 </html>
-

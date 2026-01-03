@@ -1,134 +1,179 @@
 // assets/js/product.js
+(function () {
+  const root = document.getElementById("productRoot");
+  if (!root) return;
 
-function getParam(name) {
-  const url = new URL(window.location.href);
-  return url.searchParams.get(name);
-}
+  const products =
+    window.WITTY_PRODUCTS ||
+    (window.WITTY && window.WITTY.products) ||
+    window.products ||
+    [];
 
-function money(n) {
-  return `$${Number(n).toFixed(0)}`;
-}
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
 
-function absoluteUrl(path) {
-  // Makes Snipcart happy (it prefers absolute URLs)
-  // Works on GitHub Pages + locally (when served)
-  const u = new URL(path, window.location.href);
-  return u.href;
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const id = getParam("p");
-  const product = window.WITTY_PRODUCTS.find(p => p.id === id);
+  const product = products.find((p) => p.id === id);
 
   if (!product) {
-    document.getElementById("productWrap").innerHTML = `
-      <h1>Product not found</h1>
-      <p><a href="shop.html">Back to shop</a></p>
+    root.innerHTML = `
+      <div style="padding:40px 0;">
+        <h1>Product not found</h1>
+        <p class="muted">This product link is missing or the ID doesn’t match.</p>
+        <p><a class="btn ghost" href="shop.html">Back to shop</a></p>
+      </div>
     `;
     return;
   }
 
-  // Elements
-  const titleEl = document.getElementById("pTitle");
-  const metaEl = document.getElementById("pMeta");
-  const mainImg = document.getElementById("mainImage");
-  const swatchWrap = document.getElementById("swatches");
-  const sizeSelect = document.getElementById("sizeSelect");
-  const colorSelect = document.getElementById("colorSelect");
+  // Defaults
+  const defaultColor = product.colors?.[0] || null;
+  const defaultImg = defaultColor?.img || product.image || "";
+  const defaultSize = product.sizes?.[0] || "";
+
+  // Build gallery: use `gallery` if present, otherwise use all color images
+  const gallery =
+    Array.isArray(product.gallery) && product.gallery.length
+      ? product.gallery
+      : (product.colors || []).map((c) => c.img);
+
+  root.innerHTML = `
+    <div class="product-page">
+      <div>
+        <img id="mainImage" class="main-image" src="${defaultImg}" alt="${product.name}" />
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+
+      <div>
+        <h1 style="margin-top:0;">${product.name}</h1>
+        <div class="muted" style="margin:6px 0 14px;">$${Number(product.price).toFixed(2)} • ${product.badge || ""}</div>
+
+        <p class="muted" style="line-height:1.6;">${product.description || ""}</p>
+
+        <div class="field">
+          <label>Color</label>
+          <div class="swatches" id="swatches"></div>
+        </div>
+
+        <div class="field">
+          <label for="sizeSelect">Size</label>
+          <select id="sizeSelect"></select>
+        </div>
+
+        <button
+          id="addToCartBtn"
+          class="btn snipcart-add-item"
+          data-item-id="${product.id}"
+          data-item-name="${product.name}"
+          data-item-price="${product.price}"
+          data-item-url="product.html?id=${encodeURIComponent(product.id)}"
+          data-item-image="${defaultImg}"
+          data-item-description="${product.description || ""}"
+        >
+          Add to Cart
+        </button>
+
+        <div class="muted" style="margin-top:10px; font-size:12px;">
+          Secure checkout powered by Snipcart + Stripe.
+        </div>
+
+        <div style="margin-top:18px;">
+          <a class="text-link" href="shop.html#${product.id}">← Back to shop</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Build thumbs
   const thumbs = document.getElementById("thumbs");
-  const addBtn = document.getElementById("addToCartBtn");
+  const mainImage = document.getElementById("mainImage");
+  if (thumbs && gallery.length) {
+    thumbs.innerHTML = gallery
+      .map(
+        (src, idx) => `
+          <button class="thumb ${idx === 0 ? "active" : ""}" type="button" data-src="${src}">
+            <img src="${src}" alt="thumb ${idx + 1}" loading="lazy" />
+          </button>
+        `
+      )
+      .join("");
 
-  // Set title/meta
-  titleEl.textContent = product.name;
-  metaEl.textContent = `${money(product.price)} • ${product.badge || ""} • Sizes ${product.sizes[0]}–${product.sizes[product.sizes.length - 1]}`;
+    thumbs.addEventListener("click", (e) => {
+      const btn = e.target.closest(".thumb");
+      if (!btn) return;
+      const src = btn.getAttribute("data-src");
+      if (!src) return;
 
-  // Main image
-  const defaultImg = (product.colors?.[0]?.img) || (product.gallery?.[0]) || "assets/logos/logo.png";
-  mainImg.src = defaultImg;
+      mainImage.src = src;
 
-  // Sizes dropdown
-  sizeSelect.innerHTML = product.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
+      thumbs.querySelectorAll(".thumb").forEach((t) => t.classList.remove("active"));
+      btn.classList.add("active");
 
-  // Colors dropdown + swatches
-  colorSelect.innerHTML = product.colors.map(c => `<option value="${c.value}">${c.label}</option>`).join("");
-
-  // Build swatches
-  swatchWrap.innerHTML = "";
-  product.colors.forEach((c, idx) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = `swatch ${idx === 0 ? "active" : ""}`;
-    btn.setAttribute("aria-label", c.label);
-    btn.dataset.color = c.value;
-    btn.dataset.img = c.img;
-    swatchWrap.appendChild(btn);
-  });
-
-  // Optional thumbnails gallery (varsity + hat)
-  thumbs.innerHTML = "";
-  const gallery = product.gallery || [];
-  if (gallery.length > 1) {
-    gallery.forEach((img, idx) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = `thumb ${idx === 0 ? "active" : ""}`;
-      b.innerHTML = `<img src="${img}" alt="Photo ${idx + 1}">`;
-      b.addEventListener("click", () => {
-        thumbs.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
-        b.classList.add("active");
-        mainImg.src = img;
-        // keep Snipcart image in sync too
-        addBtn.setAttribute("data-item-image", absoluteUrl(img));
-      });
-      thumbs.appendChild(b);
+      // update snipcart image too
+      const addBtn = document.getElementById("addToCartBtn");
+      if (addBtn) addBtn.setAttribute("data-item-image", src);
     });
   }
 
-  // Swatch click changes image + sync dropdown
-  swatchWrap.addEventListener("click", (e) => {
-    const btn = e.target.closest(".swatch");
-    if (!btn) return;
+  // Build swatches (bubble circles)
+  const swatches = document.getElementById("swatches");
+  const addBtn = document.getElementById("addToCartBtn");
 
-    swatchWrap.querySelectorAll(".swatch").forEach(s => s.classList.remove("active"));
-    btn.classList.add("active");
+  if (swatches && Array.isArray(product.colors) && product.colors.length) {
+    swatches.innerHTML = product.colors
+      .map((c, idx) => {
+        const active = idx === 0 ? "active" : "";
+        return `<button class="swatch ${active}" type="button" aria-label="${c.label}" data-img="${c.img}" data-label="${c.value}"></button>`;
+      })
+      .join("");
 
-    const color = btn.dataset.color;
-    const img = btn.dataset.img;
+    swatches.addEventListener("click", (e) => {
+      const btn = e.target.closest(".swatch");
+      if (!btn) return;
 
-    colorSelect.value = color;
-    mainImg.src = img;
+      const img = btn.getAttribute("data-img");
+      const label = btn.getAttribute("data-label");
 
-    // Update Snipcart image
-    addBtn.setAttribute("data-item-image", absoluteUrl(img));
-  });
+      if (img) {
+        mainImage.src = img;
+        if (addBtn) addBtn.setAttribute("data-item-image", img);
+      }
 
-  // Dropdown color change triggers matching swatch
-  colorSelect.addEventListener("change", () => {
-    const color = colorSelect.value;
-    const match = swatchWrap.querySelector(`.swatch[data-color="${CSS.escape(color)}"]`);
-    if (match) match.click();
-  });
+      // Store selected color as a custom option in Snipcart
+      if (addBtn && label) {
+        addBtn.setAttribute("data-item-custom1-name", "Color");
+        addBtn.setAttribute("data-item-custom1-options", product.colors.map(c => c.value).join("|"));
+        addBtn.setAttribute("data-item-custom1-value", label);
+      }
 
-  // Snipcart button setup (no hard-coded base URL)
-  addBtn.setAttribute("data-item-id", product.id);
-  addBtn.setAttribute("data-item-name", product.name);
-  addBtn.setAttribute("data-item-price", product.price.toFixed(2));
-  addBtn.setAttribute("data-item-description", product.description || "");
-  addBtn.setAttribute("data-item-url", window.location.href);
-  addBtn.setAttribute("data-item-image", absoluteUrl(defaultImg));
+      swatches.querySelectorAll(".swatch").forEach((s) => s.classList.remove("active"));
+      btn.classList.add("active");
+    });
 
-  // Custom fields (Size + Color)
-  addBtn.setAttribute("data-item-custom1-name", "Size");
-  addBtn.setAttribute("data-item-custom1-options", product.sizes.join("|"));
-  addBtn.setAttribute("data-item-custom1-required", "true");
+    // set default color option
+    if (addBtn && defaultColor?.value) {
+      addBtn.setAttribute("data-item-custom1-name", "Color");
+      addBtn.setAttribute("data-item-custom1-options", product.colors.map(c => c.value).join("|"));
+      addBtn.setAttribute("data-item-custom1-value", defaultColor.value);
+    }
+  }
 
-  addBtn.setAttribute("data-item-custom2-name", "Color");
-  addBtn.setAttribute("data-item-custom2-options", product.colors.map(c => c.value).join("|"));
-  addBtn.setAttribute("data-item-custom2-required", "true");
+  // Build sizes dropdown + push into Snipcart custom option
+  const sizeSelect = document.getElementById("sizeSelect");
+  if (sizeSelect && Array.isArray(product.sizes) && product.sizes.length) {
+    sizeSelect.innerHTML = product.sizes
+      .map((s) => `<option value="${s}">${s}</option>`)
+      .join("");
 
-  // Before add to cart, force selected values
-  addBtn.addEventListener("click", () => {
-    addBtn.setAttribute("data-item-custom1-value", sizeSelect.value);
-    addBtn.setAttribute("data-item-custom2-value", colorSelect.value);
-  });
-});
+    // set default size in Snipcart
+    if (addBtn) {
+      addBtn.setAttribute("data-item-custom2-name", "Size");
+      addBtn.setAttribute("data-item-custom2-options", product.sizes.join("|"));
+      addBtn.setAttribute("data-item-custom2-value", defaultSize);
+    }
+
+    sizeSelect.addEventListener("change", () => {
+      if (!addBtn) return;
+      addBtn.setAttribute("data-item-custom2-value", sizeSelect.value);
+    });
+  }
+})();

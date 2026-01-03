@@ -3,33 +3,43 @@
   const grid = document.getElementById("shopGrid");
   if (!grid) return;
 
-  const items = window.products || window.PRODUCTS || [];
+  // ✅ Pull from your real source first, with fallbacks
+  const items =
+    window.WITTY_PRODUCTS ||
+    (window.WITTY && window.WITTY.products) ||
+    window.products ||
+    [];
 
-  const slugify = (str) =>
-    String(str || "")
-      .toLowerCase()
-      .trim()
-      .replace(/&/g, "and")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+  if (!items.length) {
+    grid.innerHTML = `<p class="muted">No products loaded. Check assets/js/products.js is linked correctly.</p>`;
+    return;
+  }
 
-  const getId = (p) => p.id || p.slug || p.handle || slugify(p.name);
+  const money = (n) => {
+    const num = Number(n);
+    return Number.isFinite(num) ? num.toFixed(2) : "0.00";
+  };
 
   grid.innerHTML = items
     .map((p) => {
-      const pid = getId(p);
+      // ✅ Use your exact id for anchors + matching homepage links
+      const pid = p.id;
 
-      // If your product detail page is different, replace this href
-      const href = p.href || `product.html?id=${encodeURIComponent(pid)}`;
+      // ✅ Use the first color image as the card image
+      const img = (p.colors && p.colors[0] && p.colors[0].img) ? p.colors[0].img : p.image;
+
+      // If you already have item pages, replace this with your real page:
+      // Example: `item.html?id=${pid}`
+      const href = `product.html?id=${encodeURIComponent(pid)}`;
 
       return `
         <a class="product-card" id="${pid}" href="${href}">
-          <img src="${p.image}" alt="${p.name}" loading="lazy" />
+          <img src="${img}" alt="${p.name}" loading="lazy" />
           <div class="pc-body">
             <div class="pc-top">
               <div>
                 <div><strong>${p.name}</strong></div>
-                <div class="muted">$${Number(p.price).toFixed(2)}</div>
+                <div class="muted">$${money(p.price)}</div>
               </div>
               ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
             </div>
@@ -39,7 +49,7 @@
     })
     .join("");
 
-  // Scroll to #hash item (from homepage)
+  // ✅ Scroll + highlight when coming from homepage hash links
   const hash = (location.hash || "").replace("#", "");
   if (hash) {
     const el = document.getElementById(hash);

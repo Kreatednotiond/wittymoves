@@ -1,37 +1,389 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shop | Witty Moves</title>
+
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
 
+<body>
+  <!-- Header -->
   <header class="site-header">
-    <a class="brand" href="index.html">
-      <img src="assets/logos/logo.png" alt="Witty Moves" class="brand-logo" />
-    </a>
-    <nav class="nav">
-      <a href="shop.html">Shop</a>
-      <button class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</button>
-    </nav>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Witty Moves Home">
+        <img class="brand-logo" src="assets/logos/logo.png" alt="Witty Moves" />
+      </a>
+
+      <nav class="nav">
+        <a class="nav-link" href="shop.html">Shop</a>
+
+        <button class="snipcart-checkout cart-btn" type="button">
+          Cart (<span class="snipcart-items-count">0</span>)
+        </button>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <h1>Shop</h1>
-    <p class="muted">Tap any item to see details, pick color + size, and add to cart.</p>
+  <main class="section">
+    <div class="container">
+      <div class="page-head">
+        <h1 class="page-title">Shop Witty Moves</h1>
+        <p class="muted">Pick your piece. Add to cart. Checkout with Snipcart + Stripe.</p>
+      </div>
 
-    <section id="shopGrid" class="shop-grid"></section>
+      <!-- TEES -->
+      <section id="tees" class="shop-section">
+        <div class="section-head">
+          <div>
+            <h2>Unisex T-Shirts</h2>
+            <p>$25 • Sizes S–3XL</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- Example: Witty Tee Quarter Chest -->
+          <article class="card">
+            <img src="assets/product/witty-tee-quarter-chest/black.png" alt="Witty T-Shirt (Quarter Chest)">
+            <div class="card-body">
+              <h3>Witty T-Shirt (Quarter Chest)</h3>
+              <p class="muted">$25 • Unisex</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="witty-tee-quarter-chest"
+                data-item-name="Witty T-Shirt (Quarter Chest)"
+                data-item-price="25.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/witty-tee-quarter-chest/black.png"
+                data-item-description="Unisex tee. Quarter chest logo."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL|3XL"
+                data-item-custom2-name="Color / Print"
+                data-item-custom2-options="Black (White wording)|Red (White wording)|White (Black wording)|White (Red wording)">
+                Add to cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Example: Big Witty Tee Full Chest -->
+          <article class="card">
+            <img src="assets/product/big-witty-tee-full-chest/1.png" alt="Big Witty Moves T-Shirt (Full Chest)">
+            <div class="card-body">
+              <h3>Big Witty Moves T-Shirt (Full Chest)</h3>
+              <p class="muted">$25 • Unisex</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="big-witty-tee-full-chest"
+                data-item-name="Big Witty Moves T-Shirt (Full Chest)"
+                data-item-price="25.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/big-witty-tee-full-chest/1.png"
+                data-item-description="Unisex tee. Full chest logo."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL|3XL"
+                data-item-custom2-name="Color / Print"
+                data-item-custom2-options="Black (White wording)|Red (White wording)|White (Black wording)|White (Red wording)">
+                Add to cart
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- CREWNECKS -->
+      <section id="crewnecks" class="shop-section">
+        <div class="section-head">
+          <div>
+            <h2>Crewnecks</h2>
+            <p>$45 • Sizes S–3XL • Men sizing</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <img src="assets/product/big-witty-crewneck-full-chest/1.png" alt="Big Witty Moves Crewneck (Full Chest)">
+            <div class="card-body">
+              <h3>Big Witty Moves Crewneck (Full Chest)</h3>
+              <p class="muted">$45 • Men sizing</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="big-witty-crewneck-full-chest"
+                data-item-name="Big Witty Moves Crewneck (Full Chest)"
+                data-item-price="45.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/big-witty-crewneck-full-chest/1.png"
+                data-item-description="Men sizing crewneck. Full chest logo."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL|3XL"
+                data-item-custom2-name="Color"
+                data-item-custom2-options="Forest|Grey|Navy|Black|Slate">
+                Add to cart
+              </button>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="assets/product/witty-crewneck-quarter-chest/black.png" alt="Witty Crewneck (Quarter Chest)">
+            <div class="card-body">
+              <h3>Witty Crewneck (Quarter Chest)</h3>
+              <p class="muted">$45 • Men sizing</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="witty-crewneck-quarter-chest"
+                data-item-name="Witty Crewneck (Quarter Chest)"
+                data-item-price="45.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/witty-crewneck-quarter-chest/black.png"
+                data-item-description="Men sizing crewneck. Quarter chest logo."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL|3XL"
+                data-item-custom2-name="Color"
+                data-item-custom2-options="Forest|Grey|Navy|Black|Slate">
+                Add to cart
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- HOODIES -->
+      <section id="hoodies" class="shop-section">
+        <div class="section-head">
+          <div>
+            <h2>Hoodies</h2>
+            <p>$50 • Sizes S–2XL • Men sizing</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <img src="assets/product/big-witty-hoodie-full-chest/1.png" alt="Big Witty Moves Hoodie (Full Chest)">
+            <div class="card-body">
+              <h3>Big Witty Moves Hoodie (Full Chest)</h3>
+              <p class="muted">$50 • Men sizing</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="big-witty-hoodie-full-chest"
+                data-item-name="Big Witty Moves Hoodie (Full Chest)"
+                data-item-price="50.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/big-witty-hoodie-full-chest/1.png"
+                data-item-description="Men sizing hoodie. Full chest logo."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL"
+                data-item-custom2-name="Color"
+                data-item-custom2-options="Black|Cloudy Blue|Military Olive|Ocean Navy|Salmon|Seafoam|Slate">
+                Add to cart
+              </button>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="assets/product/witty-hoodie-quarter-chest/black.png" alt="Witty Hoodie (Quarter Chest)">
+            <div class="card-body">
+              <h3>Witty Hoodie (Quarter Chest)</h3>
+              <p class="muted">$50 • Men sizing</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="witty-hoodie-quarter-chest"
+                data-item-name="Witty Hoodie (Quarter Chest)"
+                data-item-price="50.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/witty-hoodie-quarter-chest/black.png"
+                data-item-description="Men sizing hoodie. Quarter chest logo."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL"
+                data-item-custom2-name="Color"
+                data-item-custom2-options="Black|Cloudy Blue|Military Olive|Ocean Navy|Salmon|Seafoam|Slate">
+                Add to cart
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- OVERSIZED HOODIES -->
+      <section id="oversized" class="shop-section">
+        <div class="section-head">
+          <div>
+            <h2>Oversized Hoodies</h2>
+            <p>$55 • Sizes S–2XL • Men sizing</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <img src="assets/product/witty-oversized-hoodie/black.png" alt="Witty Oversized Hoodie">
+            <div class="card-body">
+              <h3>Witty Oversized Hoodie</h3>
+              <p class="muted">$55 • Men sizing</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="witty-oversized-hoodie"
+                data-item-name="Witty Oversized Hoodie"
+                data-item-price="55.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/witty-oversized-hoodie/black.png"
+                data-item-description="Oversized hoodie. Men sizing."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL"
+                data-item-custom2-name="Color"
+                data-item-custom2-options="Black|Mineral|Parchment|Pine">
+                Add to cart
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SWEATPANTS -->
+      <section id="sweatpants" class="shop-section">
+        <div class="section-head">
+          <div>
+            <h2>Sweatpants</h2>
+            <p>$45 • Sizes S–2XL • Men sizing</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <img src="assets/product/big-witty-sweatpants/black.png" alt="Big Witty Moves Sweatpants">
+            <div class="card-body">
+              <h3>Big Witty Moves Sweatpants</h3>
+              <p class="muted">$45 • Men sizing</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="big-witty-sweatpants"
+                data-item-name="Big Witty Moves Sweatpants"
+                data-item-price="45.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/big-witty-sweatpants/black.png"
+                data-item-description="Sweatpants. Men sizing."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL"
+                data-item-custom2-name="Color"
+                data-item-custom2-options="Black|Cloudy Blue|Military Olive|Ocean Navy|Salmon|Seafoam|Slate">
+                Add to cart
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- JACKETS -->
+      <section id="jackets" class="shop-section">
+        <div class="section-head">
+          <div>
+            <h2>Varsity Jackets (Limited Edition)</h2>
+            <p>$250 • Limited sizes available</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- Unisex -->
+          <article class="card">
+            <img src="assets/product/all-witty-varsity-unisex/1.png" alt="All Witty Varsity Jacket (Unisex)">
+            <div class="card-body">
+              <h3>All Witty Varsity Jacket (Unisex)</h3>
+              <p class="muted">$250 • M–2XL • Limited</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="all-witty-varsity-unisex"
+                data-item-name="All Witty Varsity Jacket (Unisex)"
+                data-item-price="250.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/all-witty-varsity-unisex/1.png"
+                data-item-description="Limited edition varsity jacket."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="M|L|XL|2XL"
+                data-item-custom2-name="Edition"
+                data-item-custom2-options="Limited Edition">
+                Add to cart
+              </button>
+
+              <div class="muted small-note">This item has multiple photos saved in your folder (1.png, 2.png, etc.).</div>
+            </div>
+          </article>
+
+          <!-- Women Cropped -->
+          <article class="card">
+            <img src="assets/product/all-witty-varsity-womens-cropped/1.png" alt="All Witty Varsity Jacket (Women Cropped)">
+            <div class="card-body">
+              <h3>All Witty Varsity Jacket (Women Cropped)</h3>
+              <p class="muted">$250 • S–2XL • Limited</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="all-witty-varsity-womens-cropped"
+                data-item-name="All Witty Varsity Jacket (Women Cropped)"
+                data-item-price="250.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/all-witty-varsity-womens-cropped/1.png"
+                data-item-description="Limited edition cropped varsity jacket."
+                data-item-custom1-name="Size"
+                data-item-custom1-options="S|M|L|XL|2XL"
+                data-item-custom2-name="Edition"
+                data-item-custom2-options="Limited Edition">
+                Add to cart
+              </button>
+
+              <div class="muted small-note">This item has 2 photos per your note (1.png and 2.png).</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- HATS -->
+      <section id="hats" class="shop-section">
+        <div class="section-head">
+          <div>
+            <h2>Snapbacks</h2>
+            <p>$30</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <!-- JPG per your note -->
+            <img src="assets/product/w-for-witty-snapback/1.jpg" alt="W for Witty Snapback">
+            <div class="card-body">
+              <h3>W for Witty Snapback</h3>
+              <p class="muted">$30</p>
+
+              <button class="snipcart-add-item btn primary"
+                data-item-id="w-for-witty-snapback"
+                data-item-name="W for Witty Snapback"
+                data-item-price="30.00"
+                data-item-url="/shop.html"
+                data-item-image="assets/product/w-for-witty-snapback/1.jpg"
+                data-item-description="Snapback hat. Multiple photos available.">
+                Add to cart
+              </button>
+
+              <div class="muted small-note">This item has 3 photos per your note (1.jpg, 2.jpg, 3.jpg).</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
   </main>
 
-  <script src="assets/js/products.js"></script>
-  <script src="assets/js/shop.js"></script>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© <span id="year"></span> Witty Moves</div>
+      <div class="muted">Limited drops • Built to move</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
   <!-- Snipcart -->
-  <script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
-  <div hidden id="snipcart" data-api-key="NzYzOTczZmUtNzJkOC00OGNmLWEyMTItODdjMjQwNTkxMTAwNjM5MDI5MDAxMzIwMTUwNzA1"></div>
-
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_API_KEY"></div>
+  <script async src="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.js"></script>
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.css" />
 </body>
 </html>

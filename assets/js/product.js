@@ -1,5 +1,12 @@
 // assets/js/product.js
 (function () {
+  // If a shop grid ever exists on this page, kill it (prevents “all products” view)
+  const accidentalGrid = document.getElementById("shopGrid");
+  if (accidentalGrid) {
+    accidentalGrid.innerHTML = "";
+    accidentalGrid.style.display = "none";
+  }
+
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
 
@@ -32,27 +39,21 @@
     return Number.isFinite(num) ? num.toFixed(2) : "0.00";
   };
 
-  // --------- Basic info ----------
   document.title = `${product.name} | Witty Moves`;
   if (nameEl) nameEl.textContent = product.name;
   if (priceEl) priceEl.textContent = `$${money(product.price)}`;
   if (descEl) descEl.textContent = product.description || "";
 
-  // --------- Main image helper ----------
   const setMain = (src) => {
     if (!mainImage) return;
     mainImage.src = src || "";
     mainImage.alt = product.name;
   };
 
-  // --------- Selected defaults ----------
   let selectedSize = (product.sizes && product.sizes[0]) ? product.sizes[0] : "";
   let selectedColor = (product.colors && product.colors[0]) ? product.colors[0] : null;
 
-  // Default image:
-  // - If color exists -> color image
-  // - Else if gallery exists -> gallery[0]
-  // - Else empty
+  // Default image = selected color image (or gallery[0] for jacket/hat)
   const defaultImg =
     (selectedColor && selectedColor.img) ||
     (product.gallery && product.gallery[0]) ||
@@ -61,40 +62,34 @@
 
   setMain(defaultImg);
 
-  // --------- Thumbnails (IMPORTANT CHANGE)
-  // Show thumbs ONLY when product.gallery exists (hat/jackets)
-  // Do NOT show all color images as thumbnails.
+  // THUMBS: show ONLY if gallery exists (hat/jackets). Do NOT show all colors as thumbs.
   if (thumbs) {
     thumbs.innerHTML = "";
-
     const gallery = (product.gallery && product.gallery.length) ? product.gallery : [];
 
     if (gallery.length > 1) {
+      thumbs.style.display = ""; // show
       gallery.forEach((src, idx) => {
         const btn = document.createElement("button");
         btn.className = "thumb" + (idx === 0 ? " active" : "");
         btn.type = "button";
         btn.innerHTML = `<img src="${src}" alt="${product.name} thumbnail ${idx + 1}" loading="lazy">`;
-
         btn.addEventListener("click", () => {
           setMain(src);
           [...thumbs.querySelectorAll(".thumb")].forEach((t) => t.classList.remove("active"));
           btn.classList.add("active");
         });
-
         thumbs.appendChild(btn);
       });
     } else {
-      // Hide thumbs area if no gallery or only 1 image
-      thumbs.style.display = "none";
+      thumbs.style.display = "none"; // hide completely for tees/hoodies/etc
     }
   }
 
-  // --------- Size chips ----------
+  // SIZE CHIPS
   const renderSizes = () => {
     if (!sizeChips) return;
     sizeChips.innerHTML = "";
-
     (product.sizes || []).forEach((s) => {
       const b = document.createElement("button");
       b.type = "button";
@@ -110,44 +105,34 @@
   };
   renderSizes();
 
-  // --------- Swatch color (FIX: tees use garment color before "(" ) ----------
-  const getBaseColorName = (labelOrValue) => {
-    const raw = String(labelOrValue || "");
-    return raw.split("(")[0].trim().toLowerCase();
+  // COLOR SWATCH COLOR PICKER (handles tees like "Black (White wording)")
+  const baseColor = (txt) => String(txt || "").split("(")[0].trim().toLowerCase();
+
+  const pickColor = (txt) => {
+    const v = baseColor(txt);
+    const list = [
+      ["cloudy blue", "#7aa6c2"],
+      ["military olive", "#4b5d3b"],
+      ["ocean navy", "#0b2742"],
+      ["seafoam", "#7fc7b9"],
+      ["salmon", "#e38d86"],
+      ["parchment", "#e7dfcf"],
+      ["mineral", "#8a8f98"],
+      ["forest", "#0f3b2e"],
+      ["navy", "#0f1f3a"],
+      ["slate", "#5b6770"],
+      ["grey", "#8a8f98"],
+      ["gray", "#8a8f98"],
+      ["black", "#111"],
+      ["white", "#fff"],
+      ["red", "#b3122d"],
+      ["pine", "#123b2b"],
+    ];
+    for (const [k, c] of list) if (v.includes(k)) return { hex: c, white: v.includes("white") };
+    return { hex: "#eaeaea", white: false };
   };
 
-  const map = [
-    ["cloudy blue", "#7aa6c2"],
-    ["military olive", "#4b5d3b"],
-    ["ocean navy", "#0b2742"],
-    ["seafoam", "#7fc7b9"],
-    ["salmon", "#e38d86"],
-    ["parchment", "#e7dfcf"],
-    ["mineral", "#8a8f98"],
-    ["forest", "#0f3b2e"],
-    ["navy", "#0f1f3a"],
-    ["slate", "#5b6770"],
-    ["grey", "#8a8f98"],
-    ["gray", "#8a8f98"],
-    ["black", "#111"],
-    ["white", "#fff"],
-    ["red", "#b3122d"],
-    ["pine", "#123b2b"],
-  ];
-
-  const pickSwatch = (labelOrValue) => {
-    const base = getBaseColorName(labelOrValue);
-    let hex = "#eaeaea";
-    for (const [k, c] of map) {
-      if (base.includes(k)) {
-        hex = c;
-        break;
-      }
-    }
-    return { hex, isWhite: base.includes("white") };
-  };
-
-  // --------- Color swatches ----------
+  // COLOR SWATCHES
   const renderColors = () => {
     if (!colorSwatches) return;
     colorSwatches.innerHTML = "";
@@ -161,16 +146,13 @@
       sw.setAttribute("aria-label", c.label || c.value || "");
       sw.title = c.label || c.value || "";
 
-      const { hex, isWhite } = pickSwatch(c.value || c.label);
+      const { hex, white } = pickColor(c.value || c.label);
       sw.style.background = hex;
-      if (isWhite) sw.style.borderColor = "#bbb";
+      if (white) sw.style.borderColor = "#bbb";
 
       sw.addEventListener("click", () => {
         selectedColor = c;
-
-        // ✅ ONLY swap the main image (no showing all color images)
         if (c.img) setMain(c.img);
-
         renderColors();
         syncSnipcart();
       });
@@ -180,7 +162,7 @@
   };
   renderColors();
 
-  // --------- Snipcart config ----------
+  // SNIPCART
   function syncSnipcart() {
     if (!addBtn) return;
 

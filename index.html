@@ -1,33 +1,124 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Witty Moves</title>
+
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
 
+<body>
+  <!-- Header -->
   <header class="site-header">
-    <a class="brand" href="index.html">
-      <img src="assets/logos/logo.png" alt="Witty Moves" class="brand-logo" />
-    </a>
-    <nav class="nav">
-      <a href="shop.html">Shop</a>
-      <button class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</button>
-    </nav>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Witty Moves Home">
+        <!-- LOGO PATH: change if your logo is in a different folder -->
+        <img class="brand-logo" src="assets/logos/logo.png" alt="Witty Moves" />
+      </a>
+
+      <nav class="nav">
+        <a class="nav-link" href="shop.html">Shop</a>
+
+        <!-- Snipcart Cart Button -->
+        <button class="snipcart-checkout cart-btn" type="button">
+          Cart (<span class="snipcart-items-count">0</span>)
+        </button>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <h1>Witty Moves</h1>
-    <p class="muted">Built for the move. Designed to speak without yelling.</p>
-    <a class="btn" href="shop.html">Go to Shop</a>
+  <!-- Hero -->
+  <main class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1>Witty Moves</h1>
+        <p>Built for the move. Designed to speak without yelling. Limited drops, clean pieces, loud energy.</p>
+
+        <div class="hero-cta">
+          <a class="btn primary" href="shop.html">🛍️ Shop the Drop</a>
+          <a class="btn ghost" href="shop.html#jackets">⭐ Limited Editions</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="tag">⚡ New Drop • Snipcart Checkout • Secure</div>
+
+        <!-- Featured image (make sure file exists) -->
+        <img src="assets/product/all-witty-varsity-unisex/1.png" alt="Featured item">
+      </div>
+    </div>
+
+    <div class="container strip">
+      <div class="pill">
+        <strong>Fast Checkout</strong>
+        <div class="pill-sub">Snipcart + Stripe — smooth and secure.</div>
+      </div>
+      <div class="pill">
+        <strong>Limited Editions</strong>
+        <div class="pill-sub">Varsity jackets are limited sizes + quantities.</div>
+      </div>
+      <div class="pill">
+        <strong>Unisex + Men Sizing</strong>
+        <div class="pill-sub">Clear sizing across all pieces.</div>
+      </div>
+    </div>
   </main>
 
-  <!-- Snipcart -->
-  <script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
-  <div hidden id="snipcart" data-api-key="NzYzOTczZmUtNzJkOC00OGNmLWEyMTItODdjMjQwNTkxMTAwNjM5MDI5MDAxMzIwMTUwNzA1"></div>
+  <!-- Featured -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Featured</h2>
+          <p>Tap any item to shop.</p>
+        </div>
+        <a class="btn ghost" href="shop.html">View All</a>
+      </div>
 
+      <div class="featured-grid">
+        <a class="featured-card" href="shop.html#tees">
+          <img src="assets/product/big-witty-tee-full-chest/1.png" alt="Big Witty Tee">
+          <div class="meta">
+            <p class="title">Big Witty Tee (Full Chest)</p>
+            <p class="sub">$25 • S–3XL • Unisex</p>
+          </div>
+        </a>
+
+        <a class="featured-card" href="shop.html#hoodies">
+          <img src="assets/product/big-witty-hoodie-full-chest/1.png" alt="Big Witty Hoodie">
+          <div class="meta">
+            <p class="title">Big Witty Hoodie (Full Chest)</p>
+            <p class="sub">$50 • S–2XL • Men sizing</p>
+          </div>
+        </a>
+
+        <a class="featured-card" href="shop.html#jackets">
+          <img src="assets/product/all-witty-varsity-unisex/2.png" alt="All Witty Varsity">
+          <div class="meta">
+            <p class="title">All Witty Varsity (Limited)</p>
+            <p class="sub">$250 • M–2XL • Unisex</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© <span id="year"></span> Witty Moves</div>
+      <div class="muted">Built for the move.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Snipcart -->
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_API_KEY"></div>
+  <script async src="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.js"></script>
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.css" />
 </body>
 </html>

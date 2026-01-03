@@ -3,7 +3,6 @@
   const grid = document.getElementById("shopGrid");
   if (!grid) return;
 
-  // ✅ Pull from your real source first, with fallbacks
   const items =
     window.WITTY_PRODUCTS ||
     (window.WITTY && window.WITTY.products) ||
@@ -22,14 +21,13 @@
 
   grid.innerHTML = items
     .map((p) => {
-      // ✅ Use your exact id for anchors + matching homepage links
       const pid = p.id;
 
-      // ✅ Use the first color image as the card image
-      const img = (p.colors && p.colors[0] && p.colors[0].img) ? p.colors[0].img : p.image;
+      const img =
+        (p.colors && p.colors[0] && p.colors[0].img) ||
+        p.image ||
+        "";
 
-      // If you already have item pages, replace this with your real page:
-      // Example: `item.html?id=${pid}`
       const href = `product.html?id=${encodeURIComponent(pid)}`;
 
       return `
@@ -49,7 +47,7 @@
     })
     .join("");
 
-  // ✅ Scroll + highlight when coming from homepage hash links
+  // Scroll + highlight when coming from homepage hash links
   const hash = (location.hash || "").replace("#", "");
   if (hash) {
     const el = document.getElementById(hash);

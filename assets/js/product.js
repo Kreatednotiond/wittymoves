@@ -132,4 +132,3 @@ window.addEventListener("DOMContentLoaded", () => {
     addBtn.setAttribute("data-item-custom2-value", colorSelect.value);
   });
 });
-

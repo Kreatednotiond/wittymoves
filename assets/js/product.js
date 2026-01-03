@@ -38,44 +38,59 @@
   if (priceEl) priceEl.textContent = `$${money(product.price)}`;
   if (descEl) descEl.textContent = product.description || "";
 
-  // --------- Images (FIXED: build from ALL colors + gallery) ----------
-  const uniq = (arr) => Array.from(new Set(arr.filter(Boolean)));
-
-  const colorImgs = (product.colors || []).map((c) => c.img);
-  const galleryImgs = product.gallery || [];
-  const images = uniq([...colorImgs, ...galleryImgs]);
-
+  // --------- Main image helper ----------
   const setMain = (src) => {
     if (!mainImage) return;
     mainImage.src = src || "";
     mainImage.alt = product.name;
   };
 
-  // default main image
-  setMain(images[0] || "");
+  // --------- Selected defaults ----------
+  let selectedSize = (product.sizes && product.sizes[0]) ? product.sizes[0] : "";
+  let selectedColor = (product.colors && product.colors[0]) ? product.colors[0] : null;
 
-  // --------- Thumbnails ----------
+  // Default image:
+  // - If color exists -> color image
+  // - Else if gallery exists -> gallery[0]
+  // - Else empty
+  const defaultImg =
+    (selectedColor && selectedColor.img) ||
+    (product.gallery && product.gallery[0]) ||
+    (product.colors && product.colors[0] && product.colors[0].img) ||
+    "";
+
+  setMain(defaultImg);
+
+  // --------- Thumbnails (IMPORTANT CHANGE)
+  // Show thumbs ONLY when product.gallery exists (hat/jackets)
+  // Do NOT show all color images as thumbnails.
   if (thumbs) {
     thumbs.innerHTML = "";
-    if (images.length > 1) {
-      images.forEach((src, idx) => {
+
+    const gallery = (product.gallery && product.gallery.length) ? product.gallery : [];
+
+    if (gallery.length > 1) {
+      gallery.forEach((src, idx) => {
         const btn = document.createElement("button");
         btn.className = "thumb" + (idx === 0 ? " active" : "");
         btn.type = "button";
         btn.innerHTML = `<img src="${src}" alt="${product.name} thumbnail ${idx + 1}" loading="lazy">`;
+
         btn.addEventListener("click", () => {
           setMain(src);
           [...thumbs.querySelectorAll(".thumb")].forEach((t) => t.classList.remove("active"));
           btn.classList.add("active");
         });
+
         thumbs.appendChild(btn);
       });
+    } else {
+      // Hide thumbs area if no gallery or only 1 image
+      thumbs.style.display = "none";
     }
   }
 
-  // --------- Size chips (bubble buttons) ----------
-  let selectedSize = (product.sizes && product.sizes[0]) ? product.sizes[0] : "";
-
+  // --------- Size chips ----------
   const renderSizes = () => {
     if (!sizeChips) return;
     sizeChips.innerHTML = "";
@@ -95,16 +110,12 @@
   };
   renderSizes();
 
-  // --------- Color swatches ----------
-  let selectedColor = (product.colors && product.colors[0]) ? product.colors[0] : null;
-
-  // ✅ FIX: use ONLY garment color (before "(") so tees don't pick wording color
+  // --------- Swatch color (FIX: tees use garment color before "(" ) ----------
   const getBaseColorName = (labelOrValue) => {
     const raw = String(labelOrValue || "");
-    return raw.split("(")[0].trim().toLowerCase(); // "Red (White wording)" -> "red"
+    return raw.split("(")[0].trim().toLowerCase();
   };
 
-  // color map
   const map = [
     ["cloudy blue", "#7aa6c2"],
     ["military olive", "#4b5d3b"],
@@ -136,6 +147,7 @@
     return { hex, isWhite: base.includes("white") };
   };
 
+  // --------- Color swatches ----------
   const renderColors = () => {
     if (!colorSwatches) return;
     colorSwatches.innerHTML = "";
@@ -146,11 +158,9 @@
       sw.className =
         "swatch" + (selectedColor && c.value === selectedColor.value ? " active" : "");
 
-      // set label for accessibility + optional CSS selectors
       sw.setAttribute("aria-label", c.label || c.value || "");
       sw.title = c.label || c.value || "";
 
-      // ✅ set swatch color using base garment color only
       const { hex, isWhite } = pickSwatch(c.value || c.label);
       sw.style.background = hex;
       if (isWhite) sw.style.borderColor = "#bbb";
@@ -158,19 +168,8 @@
       sw.addEventListener("click", () => {
         selectedColor = c;
 
-        // switch main image to selected color image
+        // ✅ ONLY swap the main image (no showing all color images)
         if (c.img) setMain(c.img);
-
-        // highlight matching thumbnail if present
-        if (thumbs && c.img) {
-          const tButtons = [...thumbs.querySelectorAll(".thumb")];
-          tButtons.forEach((t) => t.classList.remove("active"));
-          const match = tButtons.find((t) => {
-            const img = t.querySelector("img");
-            return img && img.getAttribute("src") === c.img;
-          });
-          if (match) match.classList.add("active");
-        }
 
         renderColors();
         syncSnipcart();
@@ -189,7 +188,6 @@
       (selectedColor && selectedColor.img) ||
       (product.colors && product.colors[0] && product.colors[0].img) ||
       (product.gallery && product.gallery[0]) ||
-      images[0] ||
       "";
 
     addBtn.setAttribute("data-item-id", product.id);

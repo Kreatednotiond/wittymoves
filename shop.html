@@ -1,21 +1,27 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shop | Witty Moves</title>
+
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
 
+<body>
   <header class="site-header">
-    <a class="brand" href="index.html">
-      <img src="assets/logos/logo.png" alt="Witty Moves" class="brand-logo" />
-    </a>
-    <nav class="nav">
-      <a href="shop.html">Shop</a>
-      <button class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</button>
-    </nav>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Witty Moves Home">
+        <img src="assets/logos/logo.png" alt="Witty Moves" class="brand-logo" />
+      </a>
+
+      <nav class="nav">
+        <a class="nav-link" href="shop.html">Shop</a>
+        <button class="snipcart-checkout cart-btn" type="button">
+          Cart (<span class="snipcart-items-count">0</span>)
+        </button>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
@@ -29,9 +35,8 @@
   <script src="assets/js/shop.js"></script>
 
   <!-- Snipcart -->
-  <script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
   <div hidden id="snipcart" data-api-key="NzYzOTczZmUtNzJkOC00OGNmLWEyMTItODdjMjQwNTkxMTAwNjM5MDI5MDAxMzIwMTUwNzA1"></div>
-
+  <script async src="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.js"></script>
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.css" />
 </body>
 </html>

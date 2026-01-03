@@ -171,12 +171,12 @@ window.WITTY_PRODUCTS = [
     gender: "unisex",
     sizes: ["One Size"],
     colors: [
-      { label: "Black", value: "Black", img: "assets/product/w-for-witty-snapback/1.jpg" }
+      { label: "Black", value: "Black", img: "assets/product/w-for-witty-snapback/black-1.JPG" }
     ],
     gallery: [
-      "assets/product/w-for-witty-snapback/1.jpg",
-      "assets/product/w-for-witty-snapback/2.jpg",
-      "assets/product/w-for-witty-snapback/3.jpg",
+      "assets/product/w-for-witty-snapback/black-1.JPG",
+      "assets/product/w-for-witty-snapback/black-2.JPG",
+      "assets/product/w-for-witty-snapback/black-3.JPG",
     ],
     description: "Snapback hat.",
     badge: "Unisex"

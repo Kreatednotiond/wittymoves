@@ -6,13 +6,13 @@ window.WITTY_PRODUCTS = [
   // -------------------------
   {
     id: "witty-tee-quarter-chest",
-    name: "Witty T-Shirt (Quarter Chest)",
+    name: "Witty T-Shirt",
     price: 25,
     type: "tee",
     gender: "unisex",
     sizes: ["S","M","L","XL","2XL","3XL"],
     colors: [
-      { label: "Black (White wording)", value: "Black (White wording)", img: "assets/product/witty-tee/black-White.png" },
+      { label: "Black (White wording)", value: "Black (White wording)", img: "assets/product/witty-tee/black-white.png" },
       { label: "Red (White wording)", value: "Red (White wording)", img: "assets/product/witty-tee/red-white.png" },
       { label: "White (Black wording)", value: "White (Black wording)", img: "assets/product/witty-tee/white-black.png" },
       { label: "White (Red wording)", value: "White (Red wording)", img: "assets/product/witty-tee/white-red.png" },
@@ -28,8 +28,8 @@ window.WITTY_PRODUCTS = [
     gender: "unisex",
     sizes: ["S","M","L","XL","2XL","3XL"],
     colors: [
-      { label: "Black (White wording)", value: "Black (White wording)", img: "assets/product/big-witty-tee-full-chest/black.png" },
-      { label: "Red (White wording)", value: "Red (White wording)", img: "assets/product/big-witty-tee-full-chest/red.png" },
+      { label: "Black (White wording)", value: "Black (White wording)", img: "assets/product/big-witty-tee-full-chest/black-white.png" },
+      { label: "Red (White wording)", value: "Red (White wording)", img: "assets/product/big-witty-tee-full-chest/red-white.png" },
       { label: "White (Black wording)", value: "White (Black wording)", img: "assets/product/big-witty-tee-full-chest/white-black.png" },
       { label: "White (Red wording)", value: "White (Red wording)", img: "assets/product/big-witty-tee-full-chest/white-red.png" },
     ],
@@ -128,10 +128,10 @@ window.WITTY_PRODUCTS = [
     gender: "men",
     sizes: ["S","M","L","XL","2XL"],
     colors: [
-      { label: "Black", value: "Black", img: "assets/product/witty-oversized-hoodie/black.png" },
-      { label: "Mineral", value: "Mineral", img: "assets/product/witty-oversized-hoodie/mineral.png" },
-      { label: "Parchment", value: "Parchment", img: "assets/product/witty-oversized-hoodie/parchment.png" },
-      { label: "Pine", value: "Pine", img: "assets/product/witty-oversized-hoodie/pine.png" },
+      { label: "Black", value: "Black", img: "assets/product/witty-oversized-hoodie-quarter-chest/black.png" },
+      { label: "Mineral", value: "Mineral", img: "assets/product/witty-oversized-hoodie-quarter-chest/mineral.png" },
+      { label: "Parchment", value: "Parchment", img: "assets/product/witty-oversized-hoodie-quarter-chest/parchment.png" },
+      { label: "Pine", value: "Pine", img: "assets/product/witty-oversized-hoodie-quarter-chest/pine.png" },
     ],
     description: "Oversized hoodie. Men sizing.",
     badge: "Men sizing"

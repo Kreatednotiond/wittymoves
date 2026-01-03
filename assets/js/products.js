@@ -129,7 +129,7 @@ window.WITTY_PRODUCTS = [
     sizes: ["S","M","L","XL","2XL"],
     colors: [
       { label: "Black", value: "Black", img: "assets/product/witty-oversized-hoodie-quarter-chest/black.png" },
-      { label: "Mineral", value: "Mineral", img: "assets/product/witty-oversized-hoodie-quarter-chest/mineral.png" },
+      { label: "Mineral", value: "Mineral", img: "assets/product/witty-oversized-hoodie-quarter-chest/meneral.png" },
       { label: "Parchment", value: "Parchment", img: "assets/product/witty-oversized-hoodie-quarter-chest/parchment.png" },
       { label: "Pine", value: "Pine", img: "assets/product/witty-oversized-hoodie-quarter-chest/pine.png" },
     ],

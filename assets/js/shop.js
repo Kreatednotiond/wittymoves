@@ -38,4 +38,3 @@ window.addEventListener("DOMContentLoaded", () => {
     grid.appendChild(a);
   });
 });
-

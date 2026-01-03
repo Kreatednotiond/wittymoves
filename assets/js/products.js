@@ -184,9 +184,6 @@ window.WITTY_PRODUCTS = [
 
   // -------------------------
   // VARSITY JACKETS (LIMITED) - $250
-  // Women cropped: S-2XL
-  // Unisex: M-2XL
-  // Each has 2 photos (1 and 2)
   // -------------------------
   {
     id: "all-witty-varsity-womens-cropped",
@@ -220,3 +217,6 @@ window.WITTY_PRODUCTS = [
   },
 ];
 
+/* ✅ Compatibility: make shop.js find products no matter what name it expects */
+window.products = window.WITTY_PRODUCTS;
+window.WITTY = { products: window.WITTY_PRODUCTS };

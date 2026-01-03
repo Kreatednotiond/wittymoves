@@ -95,6 +95,35 @@
       const sw = document.createElement("button");
       sw.type = "button";
       sw.className = "swatch" + (selectedColor && c.value === selectedColor.value ? " active" : "");
+      // auto-color swatch based on the color name
+      const v = (c.value || c.label || "").toLowerCase();
+      const map = {
+        "black": "#111",
+        "red": "#b3122d",
+        "white": "#fff",
+        "navy": "#0f1f3a",
+        "forest": "#0f3b2e",
+        "grey": "#8a8f98",
+        "gray": "#8a8f98",
+        "slate": "#5b6770",
+        "cloudy blue": "#7aa6c2",
+        "military olive": "#4b5d3b",
+        "ocean navy": "#0b2742",
+        "salmon": "#e38d86",
+        "seafoam": "#7fc7b9",
+        "mineral": "#8a8f98",
+        "parchment": "#e7dfcf",
+        "pine": "#123b2b",
+      };
+      
+      let swatchColor = "#eaeaea";
+      Object.keys(map).forEach((k) => {
+        if (v.includes(k)) swatchColor = map[k];
+      });
+      
+      sw.style.background = swatchColor;
+      if (v.includes("white")) sw.style.borderColor = "#bbb";
+
       sw.setAttribute("aria-label", c.label || c.value);
       sw.title = c.label || c.value;
 

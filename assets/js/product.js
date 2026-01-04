@@ -145,7 +145,9 @@
       ["red", "#b3122d"],
       ["pine", "#123b2b"],
     ];
-    for (const [k, c] of list) if (v.includes(k)) return { hex: c, white: v.includes("white") };
+    for (const [k, c] of list) {
+      if (v.includes(k)) return { hex: c, white: v.includes("white") };
+    }
     return { hex: "#eaeaea", white: false };
   };
 
@@ -173,7 +175,6 @@
         // Switch main image to selected color image (does not affect thumbs)
         if (c.img) setMain(c.img);
 
-        // If this product has gallery thumbs (hat/jackets), keep thumb selection unchanged
         renderColors();
         syncSnipcart();
       });
@@ -185,7 +186,8 @@
 
   // --------- SNIPCART ----------
   function syncSnipcart() {
-    if (!) return;
+    // ✅ THIS was the crash in your version. Must be: if (!addBtn) return;
+    if (!addBtn) return;
 
     const imgForCart =
       (selectedColor && selectedColor.img) ||
@@ -196,14 +198,17 @@
     addBtn.setAttribute("data-item-id", product.id);
     addBtn.setAttribute("data-item-name", product.name);
     addBtn.setAttribute("data-item-price", String(product.price));
+
+    // ✅ Use your live domain product URL (ok for Snipcart)
     addBtn.setAttribute(
       "data-item-url",
       "https://wittymoves.com/product.html?id=" + encodeURIComponent(product.id)
-      );
+    );
+
     addBtn.setAttribute("data-item-image", imgForCart);
     addBtn.setAttribute("data-item-description", product.description || "");
 
-    // ✅ IMPORTANT: Weight in grams for Snipcart shipping rules
+    // ✅ Weight in grams (only matters if you set Snipcart shipping rules by weight)
     addBtn.setAttribute("data-item-weight", String(product.weight || 0));
 
     addBtn.setAttribute("data-item-custom1-name", "Size");

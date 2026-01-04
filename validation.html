@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snipcart Validation | Witty Moves</title>
+</head>
+<body>
+  <!--
+    Snipcart server crawls this page for order validation.
+    Each product MUST have:
+    - class="snipcart-add-item"
+    - id="PRODUCT_ID"
+    - data-item-id="PRODUCT_ID"
+    - data-item-price must match your real price
+    - data-item-url should point to THIS page
+  -->
+
+  <div style="display:none">
+
+    <!-- Example 1 -->
+    <button
+      class="snipcart-add-item"
+      id="witty-tee-quarter-chest"
+      data-item-id="witty-tee-quarter-chest"
+      data-item-name="Witty T-Shirt"
+      data-item-price="25"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/witty-tee/black-white.png"
+      data-item-description="Unisex tee. Quarter chest logo."
+      data-item-weight="280"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL|3XL"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black (White wording)|Red (White wording)|White (Black wording)|White (Red wording)"
+    ></button>
+
+    <!-- Example 2 (you must add one like this for EACH product id in products.js) -->
+    <button
+      class="snipcart-add-item"
+      id="big-witty-tee-full-chest"
+      data-item-id="big-witty-tee-full-chest"
+      data-item-name="Witty Moves T-Shirt (Full Chest)"
+      data-item-price="25"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/big-witty-tee/black-white.png"
+      data-item-description=""
+      data-item-weight="300"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL|3XL"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black (White wording)|Red (White wording)|White (Black wording)|White (Red wording)"
+    ></button>
+
+  </div>
+</body>
+</html>

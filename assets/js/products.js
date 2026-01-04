@@ -8,6 +8,7 @@ window.WITTY_PRODUCTS = [
     id: "witty-tee-quarter-chest",
     name: "Witty T-Shirt",
     price: 25,
+    weight: 280, // ✅ grams (tee + packaging)
     type: "tee",
     gender: "unisex",
     sizes: ["S","M","L","XL","2XL","3XL"],
@@ -24,6 +25,7 @@ window.WITTY_PRODUCTS = [
     id: "big-witty-tee-full-chest",
     name: "Witty Moves T-Shirt (Full Chest)",
     price: 25,
+    weight: 300, // ✅ grams
     type: "tee",
     gender: "unisex",
     sizes: ["S","M","L","XL","2XL","3XL"],
@@ -44,6 +46,7 @@ window.WITTY_PRODUCTS = [
     id: "big-witty-crewneck-full-chest",
     name: "Witty Moves Crewneck (Full Chest)",
     price: 45,
+    weight: 820, // ✅ grams
     type: "crewneck",
     gender: "men",
     sizes: ["S","M","L","XL","2XL","3XL"],
@@ -61,6 +64,7 @@ window.WITTY_PRODUCTS = [
     id: "witty-crewneck-quarter-chest",
     name: "Witty Crewneck (Quarter Chest)",
     price: 45,
+    weight: 800, // ✅ grams
     type: "crewneck",
     gender: "men",
     sizes: ["S","M","L","XL","2XL","3XL"],
@@ -82,6 +86,7 @@ window.WITTY_PRODUCTS = [
     id: "big-witty-hoodie-full-chest",
     name: "Witty Moves Hoodie (Full Chest)",
     price: 50,
+    weight: 980, // ✅ grams
     type: "hoodie",
     gender: "men",
     sizes: ["S","M","L","XL","2XL"],
@@ -101,6 +106,7 @@ window.WITTY_PRODUCTS = [
     id: "witty-hoodie-quarter-chest",
     name: "Witty Hoodie (Quarter Chest)",
     price: 50,
+    weight: 950, // ✅ grams
     type: "hoodie",
     gender: "men",
     sizes: ["S","M","L","XL","2XL"],
@@ -124,12 +130,13 @@ window.WITTY_PRODUCTS = [
     id: "witty-oversized-hoodie",
     name: "Witty Oversized Hoodie",
     price: 55,
+    weight: 1050, // ✅ grams
     type: "oversized",
     gender: "men",
     sizes: ["S","M","L","XL","2XL"],
     colors: [
       { label: "Black", value: "Black", img: "assets/product/witty-oversized-hoodie-quarter-chest/black.png" },
-      { label: "Mineral", value: "Mineral", img: "assets/product/witty-oversized-hoodie-quarter-chest/meneral.png" },
+      { label: "Mineral", value: "Mineral", img: "assets/product/witty-oversized-hoodie-quarter-chest/mineral.png" }, // ✅ fixed typo
       { label: "Parchment", value: "Parchment", img: "assets/product/witty-oversized-hoodie-quarter-chest/parchment.png" },
       { label: "Pine", value: "Pine", img: "assets/product/witty-oversized-hoodie-quarter-chest/pine.png" },
     ],
@@ -144,6 +151,7 @@ window.WITTY_PRODUCTS = [
     id: "big-witty-sweatpants",
     name: "Witty Moves Sweatpants",
     price: 45,
+    weight: 900, // ✅ grams
     type: "sweatpants",
     gender: "men",
     sizes: ["S","M","L","XL","2XL"],
@@ -167,6 +175,7 @@ window.WITTY_PRODUCTS = [
     id: "w-for-witty-snapback",
     name: "W for Witty Snapback",
     price: 30,
+    weight: 220, // ✅ grams
     type: "hat",
     gender: "unisex",
     sizes: ["One Size"],
@@ -189,6 +198,7 @@ window.WITTY_PRODUCTS = [
     id: "all-witty-varsity-womens-cropped",
     name: "All Witty Varsity Jacket (Women Cropped) - Limited Edition",
     price: 250,
+    weight: 1600, // ✅ grams
     type: "varsity",
     gender: "women",
     sizes: ["S","M","L","XL","2XL"],
@@ -204,6 +214,7 @@ window.WITTY_PRODUCTS = [
     id: "all-witty-varsity-unisex",
     name: "All Witty Varsity Jacket (Unisex) - Limited Edition",
     price: 250,
+    weight: 1750, // ✅ grams
     type: "varsity",
     gender: "unisex",
     sizes: ["M","L","XL","2XL"],

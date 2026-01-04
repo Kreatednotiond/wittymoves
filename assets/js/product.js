@@ -200,6 +200,9 @@
     addBtn.setAttribute("data-item-image", imgForCart);
     addBtn.setAttribute("data-item-description", product.description || "");
 
+    // ✅ IMPORTANT: Weight in grams for Snipcart shipping rules
+    addBtn.setAttribute("data-item-weight", String(product.weight || 0));
+
     addBtn.setAttribute("data-item-custom1-name", "Size");
     addBtn.setAttribute("data-item-custom1-options", (product.sizes || []).join("|"));
     addBtn.setAttribute("data-item-custom1-value", selectedSize || "");

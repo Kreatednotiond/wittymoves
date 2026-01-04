@@ -52,8 +52,8 @@
     mainImage.alt = product.name;
   };
 
-  let selectedSize = (product.sizes && product.sizes[0]) ? product.sizes[0] : "";
-  let selectedColor = (product.colors && product.colors[0]) ? product.colors[0] : null;
+  let selectedSize = product.sizes && product.sizes[0] ? product.sizes[0] : "";
+  let selectedColor = product.colors && product.colors[0] ? product.colors[0] : null;
 
   // Default image = selected color image (or gallery[0] for jacket/hat)
   const defaultImg =
@@ -68,7 +68,7 @@
   // Show ONLY if gallery exists (hat/jackets). Do NOT show all colors as thumbs.
   if (thumbs) {
     thumbs.innerHTML = "";
-    const gallery = (product.gallery && product.gallery.length) ? product.gallery : [];
+    const gallery = product.gallery && product.gallery.length ? product.gallery : [];
 
     if (gallery.length > 1) {
       thumbs.style.display = ""; // show
@@ -143,7 +143,9 @@
       ["red", "#b3122d"],
       ["pine", "#123b2b"],
     ];
-    for (const [k, c] of list) if (v.includes(k)) return { hex: c, white: v.includes("white") };
+    for (const [k, c] of list) {
+      if (v.includes(k)) return { hex: c, white: v.includes("white") };
+    }
     return { hex: "#eaeaea", white: false };
   };
 
@@ -181,6 +183,10 @@
   function syncSnipcart() {
     if (!addBtn) return;
 
+    // IMPORTANT FIX:
+    // Snipcart validation expects the HTML element "id" to match the product "data-item-id"
+    addBtn.id = product.id;
+
     const imgForCart =
       (selectedColor && selectedColor.img) ||
       (product.colors && product.colors[0] && product.colors[0].img) ||
@@ -191,13 +197,14 @@
     addBtn.setAttribute("data-item-name", product.name);
     addBtn.setAttribute("data-item-price", String(product.price));
 
-    // ✅ RELATIVE URL (no products.html)
+    // IMPORTANT FIX:
+    // Use the same validation page URL for every product so Snipcart can crawl it.
     addBtn.setAttribute("data-item-url", "https://www.wittymoves.com/validation.html");
 
     addBtn.setAttribute("data-item-image", imgForCart);
     addBtn.setAttribute("data-item-description", product.description || "");
 
-    // ✅ grams
+    // grams
     addBtn.setAttribute("data-item-weight", String(product.weight || 0));
 
     addBtn.setAttribute("data-item-custom1-name", "Size");

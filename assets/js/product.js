@@ -192,7 +192,10 @@
     addBtn.setAttribute("data-item-price", String(product.price));
 
     // ✅ RELATIVE URL (no products.html)
-    addBtn.setAttribute("data-item-url", "product.html?id=" + encodeURIComponent(product.id));
+    addBtn.setAttribute(
+      "data-item-url",
+      "https://www.wittymoves.com/product.html?id=" + encodeURIComponent(product.id)
+    );
 
     addBtn.setAttribute("data-item-image", imgForCart);
     addBtn.setAttribute("data-item-description", product.description || "");

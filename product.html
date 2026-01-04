@@ -1,88 +1,82 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Product | Witty Moves</title>
+// assets/js/product.js
+(function () {
+  // If a shop grid ever exists on this page, kill it (prevents “all products” view)
+  const accidentalGrid = document.getElementById("shopGrid");
+  if (accidentalGrid) {
+    accidentalGrid.innerHTML = "";
+    accidentalGrid.style.display = "none";
+  }
 
-  <!-- cache-bust css -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=7" />
-</head>
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
 
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Witty Moves Home">
-        <img class="brand-logo" src="assets/logos/logo.png" alt="Witty Moves" />
-      </a>
+  const wrap = document.getElementById("productWrap");
+  const notFound = document.getElementById("notFound");
 
-      <nav class="nav">
-        <a class="nav-link" href="shop.html">Shop</a>
-        <button class="snipcart-checkout cart-btn" type="button">
-          Cart (<span class="snipcart-items-count">0</span>)
-        </button>
-      </nav>
-    </div>
-  </header>
+  const nameEl = document.getElementById("pName");
+  const priceEl = document.getElementById("pPrice");
+  const descEl = document.getElementById("pDesc");
 
-  <main class="container">
-    <!-- IMPORTANT: product page should NOT have #shopGrid anywhere -->
-    <section id="productWrap" class="product-page">
-      <div>
-        <img id="mainImage" class="main-image" src="" alt="" />
-        <div id="thumbs" class="thumbs"></div>
-      </div>
+  const mainImage = document.getElementById("mainImage");
+  const thumbs = document.getElementById("thumbs");
 
-      <div>
-        <h1 id="pName"></h1>
-        <div id="pPrice" class="muted" style="font-weight:800; margin: 6px 0 10px;"></div>
-        <p id="pDesc" class="muted"></p>
+  const sizeChips = document.getElementById("sizeChips");
+  const colorSwatches = document.getElementById("colorSwatches");
 
-        <div class="field">
-          <label>Color</label>
-          <div id="colorSwatches" class="swatches"></div>
-        </div>
+  const addBtn = document.getElementById("addBtn");
 
-        <div class="field">
-          <label>Size</label>
-          <div id="sizeChips" class="chips"></div>
-        </div>
+  const items = window.WITTY_PRODUCTS || [];
+  const product = items.find((p) => p.id === id);
 
-        <button id="addBtn" class="btn snipcart-add-item" type="button">
-          Add to Cart
-        </button>
+  if (!id || !product) {
+    if (wrap) wrap.style.display = "none";
+    if (notFound) notFound.style.display = "block";
+    return;
+  }
 
-        <div style="margin-top:12px;">
-          <a class="muted" href="shop.html">← Back to Shop</a>
-        </div>
-      </div>
-    </section>
+  const money = (n) => {
+    const num = Number(n);
+    return Number.isFinite(num) ? num.toFixed(2) : "0.00";
+  };
 
-    <section id="notFound" style="display:none;">
-      <h1>Product not found</h1>
-      <p class="muted">Go back to the shop and select an item.</p>
-      <a class="btn" href="shop.html">Back to Shop</a>
-    </section>
-  </main>
+  // --------- Basic info ----------
+  document.title = `${product.name} | Witty Moves`;
+  if (nameEl) nameEl.textContent = product.name;
+  if (priceEl) priceEl.textContent = `$${money(product.price)}`;
+  if (descEl) descEl.textContent = product.description || "";
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="muted">© <span id="year"></span> Witty Moves</div>
-      <div class="muted">Built for the move.</div>
-    </div>
-  </footer>
+  // --------- Main image ----------
+  const setMain = (src) => {
+    if (!mainImage) return;
+    mainImage.src = src || "";
+    mainImage.alt = product.name;
+  };
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  let selectedSize = (product.sizes && product.sizes[0]) ? product.sizes[0] : "";
+  let selectedColor = (product.colors && product.colors[0]) ? product.colors[0] : null;
 
-  <!-- cache-bust js -->
-  <script src="assets/js/products.js?v=7"></script>
-  <script src="assets/js/product.js?v=7"></script>
+  // Default image = selected color image (or gallery[0] for jacket/hat)
+  const defaultImg =
+    (selectedColor && selectedColor.img) ||
+    (product.gallery && product.gallery[0]) ||
+    (product.colors && product.colors[0] && product.colors[0].img) ||
+    "";
 
-  <!-- Snipcart -->
-  <div hidden id="snipcart" data-api-key="NzYzOTczZmUtNzJkOC00OGNmLWEyMTItODdjMjQwNTkxMTAwNjM5MDI5MDAxMzIwMTUwNzA1"></div>
-  <script async src="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.js"></script>
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.css" />
-</body>
-</html>
+  setMain(defaultImg);
+
+  // --------- THUMBS ----------
+  // Show ONLY if gallery exists (hat/jackets). Do NOT show all colors as thumbs.
+  if (thumbs) {
+    thumbs.innerHTML = "";
+    const gallery = (product.gallery && product.gallery.length) ? product.gallery : [];
+
+    if (gallery.length > 1) {
+      thumbs.style.display = ""; // show
+
+      const activeSrc = defaultImg && gallery.includes(defaultImg) ? defaultImg : gallery[0];
+
+      gallery.forEach((src, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "thumb" + (src === activeSrc ? " active" : "");
+        btn.innerHTML = `<img src="${src}" alt="${product.name} thumbnail

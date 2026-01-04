@@ -73,7 +73,6 @@
     if (gallery.length > 1) {
       thumbs.style.display = ""; // show
 
-      // Decide which thumb should be active based on current main image
       const activeSrc = defaultImg && gallery.includes(defaultImg) ? defaultImg : gallery[0];
 
       gallery.forEach((src, idx) => {
@@ -122,7 +121,6 @@
   renderSizes();
 
   // --------- COLOR SWATCH COLOR PICKER ----------
-  // Handles tees like "Black (White wording)" by stripping ( ... )
   const baseColor = (txt) => String(txt || "").split("(")[0].trim().toLowerCase();
 
   const pickColor = (txt) => {
@@ -145,9 +143,7 @@
       ["red", "#b3122d"],
       ["pine", "#123b2b"],
     ];
-    for (const [k, c] of list) {
-      if (v.includes(k)) return { hex: c, white: v.includes("white") };
-    }
+    for (const [k, c] of list) if (v.includes(k)) return { hex: c, white: v.includes("white") };
     return { hex: "#eaeaea", white: false };
   };
 
@@ -171,10 +167,7 @@
 
       sw.addEventListener("click", () => {
         selectedColor = c;
-
-        // Switch main image to selected color image (does not affect thumbs)
         if (c.img) setMain(c.img);
-
         renderColors();
         syncSnipcart();
       });
@@ -186,7 +179,6 @@
 
   // --------- SNIPCART ----------
   function syncSnipcart() {
-    // ✅ THIS was the crash in your version. Must be: if (!addBtn) return;
     if (!addBtn) return;
 
     const imgForCart =
@@ -199,16 +191,13 @@
     addBtn.setAttribute("data-item-name", product.name);
     addBtn.setAttribute("data-item-price", String(product.price));
 
-    // ✅ Use your live domain product URL (ok for Snipcart)
-    addBtn.setAttribute(
-      "data-item-url",
-      "https://wittymoves.com/product.html?id=" + encodeURIComponent(product.id)
-    );
+    // ✅ RELATIVE URL (no products.html)
+    addBtn.setAttribute("data-item-url", "product.html?id=" + encodeURIComponent(product.id));
 
     addBtn.setAttribute("data-item-image", imgForCart);
     addBtn.setAttribute("data-item-description", product.description || "");
 
-    // ✅ Weight in grams (only matters if you set Snipcart shipping rules by weight)
+    // ✅ grams
     addBtn.setAttribute("data-item-weight", String(product.weight || 0));
 
     addBtn.setAttribute("data-item-custom1-name", "Size");

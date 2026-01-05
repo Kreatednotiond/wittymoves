@@ -8,17 +8,15 @@
 <body>
   <!--
     Snipcart server crawls this page for order validation.
-    Each product MUST have:
-    - class="snipcart-add-item"
-    - id="PRODUCT_ID"
-    - data-item-id="PRODUCT_ID"
-    - data-item-price must match your real price
-    - data-item-url should point to THIS page
+    IMPORTANT:
+    - Snipcart does NOT run your JS here.
+    - This file must contain one snipcart-add-item for every product ID you sell.
+    - data-item-url MUST point to THIS page.
   -->
 
   <div style="display:none">
 
-    <!-- Example 1 -->
+    <!-- 1) witty-tee-quarter-chest -->
     <button
       class="snipcart-add-item"
       id="witty-tee-quarter-chest"
@@ -31,11 +29,13 @@
       data-item-weight="280"
       data-item-custom1-name="Size"
       data-item-custom1-options="S|M|L|XL|2XL|3XL"
+      data-item-custom1-value="S"
       data-item-custom2-name="Color"
       data-item-custom2-options="Black (White wording)|Red (White wording)|White (Black wording)|White (Red wording)"
+      data-item-custom2-value="Black (White wording)"
     ></button>
 
-    <!-- Example 2 (you must add one like this for EACH product id in products.js) -->
+    <!-- 2) big-witty-tee-full-chest -->
     <button
       class="snipcart-add-item"
       id="big-witty-tee-full-chest"
@@ -43,13 +43,186 @@
       data-item-name="Witty Moves T-Shirt (Full Chest)"
       data-item-price="25"
       data-item-url="https://www.wittymoves.com/validation.html"
-      data-item-image="assets/product/big-witty-tee/black-white.png"
-      data-item-description=""
+      data-item-image="assets/product/big-witty-tee-full-chest/black-white.png"
+      data-item-description="Unisex tee. Full chest print."
       data-item-weight="300"
       data-item-custom1-name="Size"
       data-item-custom1-options="S|M|L|XL|2XL|3XL"
+      data-item-custom1-value="S"
       data-item-custom2-name="Color"
       data-item-custom2-options="Black (White wording)|Red (White wording)|White (Black wording)|White (Red wording)"
+      data-item-custom2-value="Black (White wording)"
+    ></button>
+
+    <!-- 3) big-witty-crewneck-full-chest -->
+    <button
+      class="snipcart-add-item"
+      id="big-witty-crewneck-full-chest"
+      data-item-id="big-witty-crewneck-full-chest"
+      data-item-name="Witty Moves Crewneck (Full Chest)"
+      data-item-price="45"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/big-witty-crewneck-full-chest/forest.png"
+      data-item-description="Men sizing crewneck. Full chest logo."
+      data-item-weight="820"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL|3XL"
+      data-item-custom1-value="S"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Forest|Grey|Navy|Black|Slate"
+      data-item-custom2-value="Forest"
+    ></button>
+
+    <!-- 4) witty-crewneck-quarter-chest -->
+    <button
+      class="snipcart-add-item"
+      id="witty-crewneck-quarter-chest"
+      data-item-id="witty-crewneck-quarter-chest"
+      data-item-name="Witty Crewneck (Quarter Chest)"
+      data-item-price="45"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/witty-crewneck-quarter-chest/forest.png"
+      data-item-description="Men sizing crewneck. Quarter chest logo."
+      data-item-weight="800"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL|3XL"
+      data-item-custom1-value="S"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Forest|Grey|Navy|Black|Slate"
+      data-item-custom2-value="Forest"
+    ></button>
+
+    <!-- 5) big-witty-hoodie-full-chest -->
+    <button
+      class="snipcart-add-item"
+      id="big-witty-hoodie-full-chest"
+      data-item-id="big-witty-hoodie-full-chest"
+      data-item-name="Witty Moves Hoodie (Full Chest)"
+      data-item-price="50"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/big-witty-hoodie-full-chest/black.png"
+      data-item-description="Men sizing hoodie. Full chest logo."
+      data-item-weight="980"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL"
+      data-item-custom1-value="S"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black|Cloudy Blue|Military Olive|Ocean Navy|Salmon|Seafoam|Slate"
+      data-item-custom2-value="Black"
+    ></button>
+
+    <!-- 6) witty-hoodie-quarter-chest -->
+    <button
+      class="snipcart-add-item"
+      id="witty-hoodie-quarter-chest"
+      data-item-id="witty-hoodie-quarter-chest"
+      data-item-name="Witty Hoodie (Quarter Chest)"
+      data-item-price="50"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/witty-hoodie-quarter-chest/black.png"
+      data-item-description="Men sizing hoodie. Quarter chest logo."
+      data-item-weight="950"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL"
+      data-item-custom1-value="S"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black|Cloudy Blue|Military Olive|Ocean Navy|Salmon|Seafoam|Slate"
+      data-item-custom2-value="Black"
+    ></button>
+
+    <!-- 7) witty-oversized-hoodie -->
+    <button
+      class="snipcart-add-item"
+      id="witty-oversized-hoodie"
+      data-item-id="witty-oversized-hoodie"
+      data-item-name="Witty Oversized Hoodie"
+      data-item-price="55"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/witty-oversized-hoodie-quarter-chest/black.png"
+      data-item-description="Oversized hoodie. Men sizing."
+      data-item-weight="1050"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL"
+      data-item-custom1-value="S"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black|Mineral|Parchment|Pine"
+      data-item-custom2-value="Black"
+    ></button>
+
+    <!-- 8) big-witty-sweatpants -->
+    <button
+      class="snipcart-add-item"
+      id="big-witty-sweatpants"
+      data-item-id="big-witty-sweatpants"
+      data-item-name="Witty Moves Sweatpants"
+      data-item-price="45"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/big-witty-sweatpants/black.png"
+      data-item-description="Sweatpants. Men sizing."
+      data-item-weight="900"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL"
+      data-item-custom1-value="S"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black|Cloudy Blue|Military Olive|Ocean Navy|Salmon|Seafoam|Slate"
+      data-item-custom2-value="Black"
+    ></button>
+
+    <!-- 9) w-for-witty-snapback -->
+    <button
+      class="snipcart-add-item"
+      id="w-for-witty-snapback"
+      data-item-id="w-for-witty-snapback"
+      data-item-name="W for Witty Snapback"
+      data-item-price="30"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/w-for-witty-snapback/black-1.JPG"
+      data-item-description="Snapback hat."
+      data-item-weight="220"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="One Size"
+      data-item-custom1-value="One Size"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black"
+      data-item-custom2-value="Black"
+    ></button>
+
+    <!-- 10) all-witty-varsity-womens-cropped -->
+    <button
+      class="snipcart-add-item"
+      id="all-witty-varsity-womens-cropped"
+      data-item-id="all-witty-varsity-womens-cropped"
+      data-item-name="All Witty Varsity Jacket (Women Cropped) - Limited Edition"
+      data-item-price="250"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/all-witty-varsity-womens-cropped/1.png"
+      data-item-description="Limited edition cropped varsity jacket (women)."
+      data-item-weight="1600"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="S|M|L|XL|2XL"
+      data-item-custom1-value="S"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black/White"
+      data-item-custom2-value="Black/White"
+    ></button>
+
+    <!-- 11) all-witty-varsity-unisex -->
+    <button
+      class="snipcart-add-item"
+      id="all-witty-varsity-unisex"
+      data-item-id="all-witty-varsity-unisex"
+      data-item-name="All Witty Varsity Jacket (Unisex) - Limited Edition"
+      data-item-price="250"
+      data-item-url="https://www.wittymoves.com/validation.html"
+      data-item-image="assets/product/all-witty-varsity-unisex/1.png"
+      data-item-description="Limited edition varsity jacket (unisex)."
+      data-item-weight="1750"
+      data-item-custom1-name="Size"
+      data-item-custom1-options="M|L|XL|2XL"
+      data-item-custom1-value="M"
+      data-item-custom2-name="Color"
+      data-item-custom2-options="Black/White"
+      data-item-custom2-value="Black/White"
     ></button>
 
   </div>

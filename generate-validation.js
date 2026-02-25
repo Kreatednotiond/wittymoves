@@ -129,7 +129,7 @@ const html = `<!doctype html>
   </div>
 
   <!-- Snipcart (kept so page is valid in case you ever open it) -->
-  <div hidden id="snipcart" data-api-key="NzYzOTczZmUtNzJkOC00OGNmLWEyMTItODdjMjQwNTkxMTAwNjM5MDI5MDAxMzIwMTUwNzA1"></div>
+  <div hidden id="snipcart" data-api-key="MDAwM2ViMzEtOTIwYS00MWVlLTk5YjMtMmZhZDU4MDgyMzVkNjM5MDI5MDAxMzIwMTUwNzA1"></div>
   <script async src="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.js"></script>
   <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.0/default/snipcart.css" />
 </body>
